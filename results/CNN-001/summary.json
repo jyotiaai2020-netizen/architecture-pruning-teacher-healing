@@ -1,0 +1,9 @@
+{
+  "experiment_id": "CNN-001",
+  "model": "tinycnn",
+  "device": "cuda",
+  "best_accuracy": 57.34,
+  "parameters": 545098,
+  "model_size_mb": 2.083134651184082,
+  "wall_clock_seconds": 13.538705750999725
+}

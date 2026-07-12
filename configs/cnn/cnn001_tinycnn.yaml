@@ -1,0 +1,26 @@
+experiment:
+  id: CNN-001
+  name: tinycnn_cifar10_framework_validation
+  seed: 42
+
+model:
+  name: tinycnn
+  role: framework_validation
+  num_classes: 10
+
+dataset:
+  name: CIFAR10
+  root: ./datasets
+  download: true
+
+training:
+  epochs: 1
+  batch_size: 32
+  learning_rate: 0.001
+  optimizer: Adam
+  num_workers: 2
+  mixed_precision: true
+
+tracking:
+  experiment_name: CNN_Framework_Validation
+  tracking_uri: http://127.0.0.1:5050
