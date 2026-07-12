@@ -1,0 +1,54 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Environments
+venv/
+.venv/
+pruning-venv/
+env/
+.env
+
+# Secrets
+*.pem
+*.key
+*.crt
+.env.*
+credentials*
+secrets*
+
+# Datasets
+datasets/*
+!datasets/README.md
+
+# Model checkpoints and binaries
+checkpoints/*
+results/*.pt
+results/*.pth
+results/*.ckpt
+results/*.bin
+results/*.safetensors
+*.onnx
+*.gguf
+
+# MLflow
+mlruns/
+mlflow.db
+mlartifacts/
+
+# Logs and temporary outputs
+logs/*
+*.log
+tmp/
+.cache/
+
+# IDE and OS
+.vscode/
+.DS_Store
+
+# Generated reports/figures can be selectively committed
+reports/generated/
+figures/generated/

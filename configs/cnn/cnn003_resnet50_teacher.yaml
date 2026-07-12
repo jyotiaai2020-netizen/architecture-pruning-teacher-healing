@@ -1,0 +1,42 @@
+experiment:
+  id: CNN-003
+  name: resnet50_cifar10_teacher
+  phase: teacher_baseline
+  seed: 42
+
+model:
+  name: resnet50
+  role: teacher
+  pretrained: false
+  num_classes: 10
+
+dataset:
+  name: CIFAR10
+  root: ./datasets
+  input_size: [3, 32, 32]
+  train_samples: 50000
+  test_samples: 10000
+
+training:
+  epochs: 50
+  batch_size: 128
+  optimizer: SGD
+  learning_rate: 0.1
+  momentum: 0.9
+  weight_decay: 0.0005
+  num_workers: 4
+  mixed_precision: true
+
+tracking:
+  provider: mlflow
+  experiment_name: CNN_Teacher_Baseline
+  checkpoint_directory: ./checkpoints/CNN-003
+
+edf:
+  record_model_size: true
+  record_parameters: true
+  record_peak_ram: true
+  record_peak_vram: true
+  record_latency: true
+  record_throughput: true
+  record_energy_proxy: true

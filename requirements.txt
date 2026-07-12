@@ -1,0 +1,16 @@
+torch
+torchvision
+torchaudio
+mlflow
+hydra-core
+omegaconf
+tensorboard
+numpy
+pandas
+matplotlib
+scikit-learn
+opencv-python
+tqdm
+pyyaml
+psutil
+pytest
