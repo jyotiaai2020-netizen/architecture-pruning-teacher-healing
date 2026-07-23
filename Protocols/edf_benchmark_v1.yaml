@@ -1,0 +1,132 @@
+protocol:
+  name: "EDF Benchmark Protocol"
+  version: "1.0.0"
+  status: "draft"
+  frozen: false
+  created_date: "2026-07-22"
+  purpose: >
+    Measure capability preservation and Effective Deployment Footprint (EDF)
+    consistently across FP32, PTQ, QAT, and Teacher-Healed model variants.
+
+experiment:
+  baseline_group: "E0"
+  baseline_model: "resnet18"
+  baseline_precision: "fp32"
+  dataset: "cifar10"
+  seeds: [42, 123, 2026]
+  test_split_id: null
+  dataset_hash: null
+  config_hash: null
+  git_commit: null
+
+data:
+  input_shape: [3, 32, 32]
+  class_count: 10
+  preprocessing:
+    normalize: true
+    mean: [0.4914, 0.4822, 0.4465]
+    std: [0.2470, 0.2435, 0.2616]
+  evaluation_augmentation: false
+  shuffle_test_data: false
+
+runtime:
+  framework: "pytorch"
+  framework_version: null
+  deployment_runtime: "pytorch"
+  deployment_runtime_version: null
+  quantization_backend: null
+  device: "cuda"
+  device_name: null
+  cpu_threads: 1
+  deterministic_algorithms: true
+  cudnn_benchmark: false
+  synchronize_cuda: true
+
+inference:
+  batch_sizes: [1, 8, 32, 128]
+  warmup_iterations: 50
+  timed_iterations: 500
+  repetitions: 5
+  latency_percentiles: [50, 95, 99]
+  record_raw_timings: true
+  throughput_unit: "samples_per_second"
+
+capability_metrics:
+  clean_accuracy: true
+  macro_f1: true
+  negative_log_likelihood: true
+  expected_calibration_error:
+    enabled: true
+    bins: 15
+  corruption_robustness:
+    enabled: true
+    dataset: "cifar10-c"
+    severities: [1, 2, 3, 4, 5]
+  failure_consistency:
+    enabled: true
+
+resource_metrics:
+  serialized_model_size_mb: true
+  peak_cpu_ram_mb: true
+  peak_gpu_vram_mb: true
+  latency_ms: true
+  throughput: true
+  energy:
+    enabled: true
+    method: null
+    unit: "joules_per_inference"
+    allow_proxy: true
+    proxy_must_be_labeled: true
+
+scoring:
+  capability:
+    formula: "0.45*A + 0.15*(1-ECE) + 0.25*R + 0.15*F"
+    weights:
+      clean_accuracy: 0.45
+      calibration: 0.15
+      corruption_robustness: 0.25
+      macro_f1_or_failure_consistency: 0.15
+  edf:
+    formula: "0.25*S_n + 0.25*M_n + 0.25*L_n + 0.25*E_n"
+    weights:
+      serialized_size: 0.25
+      peak_memory: 0.25
+      latency: 0.25
+      energy: 0.25
+    normalization_reference: "E0"
+    lower_is_better: true
+  cpedf:
+    formula: "CapabilityScore / EDFScore"
+    higher_is_better: true
+
+outputs:
+  root_directory: "results/{experiment_id}/edf_v1"
+  files:
+    capability_metrics: "capability_metrics.json"
+    resource_metrics: "resource_metrics.json"
+    latency_raw: "latency_raw.csv"
+    predictions: "predictions.csv"
+    environment: "environment.json"
+    manifest: "manifest.json"
+    summary: "edf_summary.json"
+  preserve_raw_measurements: true
+  overwrite_existing: false
+
+validation:
+  require_checkpoint_hash: true
+  require_dataset_hash: true
+  require_config_hash: true
+  require_git_commit: true
+  require_environment_capture: true
+  compare_fp32_and_int8_in_same_runtime: true
+  reject_missing_required_metrics: true
+
+freeze_checklist:
+  dataset_split_confirmed: false
+  preprocessing_confirmed: false
+  runtime_versions_recorded: false
+  quantization_backend_selected: false
+  hardware_recorded: false
+  energy_method_selected: false
+  scoring_weights_approved: false
+  normalization_reference_approved: false
