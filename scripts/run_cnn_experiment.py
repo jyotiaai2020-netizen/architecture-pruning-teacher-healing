@@ -1,5 +1,5 @@
 from __future__ import annotations
-
+import subprocess
 import argparse
 import json
 import os
@@ -70,11 +70,29 @@ def build_model(name: str, num_classes: int) -> nn.Module:
 
     if normalized_name == "resnet18":
         model = resnet18(weights=None)
+        model.conv1 = nn.Conv2d(
+            3,
+            64,
+            kernel_size=3,
+            stride=1,
+            padding=1,
+            bias=False,
+        )
+        model.maxpool = nn.Identity()
         model.fc = nn.Linear(model.fc.in_features, num_classes)
         return model
 
     if normalized_name == "resnet50":
         model = resnet50(weights=None)
+        model.conv1 = nn.Conv2d(
+            3,
+            64,
+            kernel_size=3,
+            stride=1,
+            padding=1,
+            bias=False,
+        )
+        model.maxpool = nn.Identity()
         model.fc = nn.Linear(model.fc.in_features, num_classes)
         return model
 
@@ -163,6 +181,10 @@ def train_one_epoch(
 ) -> tuple[float, float]:
     model.train()
     total_loss = 0.0
+
+    if device.type == "cuda":
+        torch.cuda.synchronize()
+
     start_time = time.perf_counter()
 
     for images, labels in loader:
@@ -185,6 +207,9 @@ def train_one_epoch(
 
         total_loss += loss.item()
 
+    if device.type == "cuda":
+        torch.cuda.synchronize()
+
     average_loss = total_loss / len(loader)
     elapsed = time.perf_counter() - start_time
 
@@ -201,6 +226,10 @@ def evaluate(
 
     correct = 0
     total = 0
+
+    if device.type == "cuda":
+        torch.cuda.synchronize()
+
     start_time = time.perf_counter()
 
     for images, labels in loader:
@@ -212,6 +241,9 @@ def evaluate(
 
         correct += (predictions == labels).sum().item()
         total += labels.size(0)
+
+    if device.type == "cuda":
+        torch.cuda.synchronize()
 
     elapsed = time.perf_counter() - start_time
     accuracy = 100.0 * correct / total
@@ -271,8 +303,14 @@ def main() -> None:
     else:
         raise ValueError(f"Unsupported optimizer: {training['optimizer']}")
 
+    scheduler = optim.lr_scheduler.MultiStepLR(
+        optimizer,
+        milestones=[25, 40],
+        gamma=0.1,
+    )
+
     scaler = torch.amp.GradScaler(
-        device=device.type,
+        "cuda",
         enabled=use_amp,
     )
 
@@ -287,6 +325,14 @@ def main() -> None:
 
     process = psutil.Process(os.getpid())
     total_start = time.perf_counter()
+
+    try:
+        git_commit = subprocess.check_output(
+        ["git", "rev-parse", "HEAD"],
+        text=True,
+    ).strip()
+    except Exception:
+        git_commit = "unknown"
 
     with mlflow.start_run(run_name=experiment["name"]):
         mlflow.log_params(
@@ -303,6 +349,7 @@ def main() -> None:
                 "device": str(device),
                 "mixed_precision": use_amp,
                 "parameter_count": count_parameters(model),
+                "git_commit": git_commit,
             }
         )
 
@@ -311,6 +358,8 @@ def main() -> None:
         for epoch in range(1, int(training["epochs"]) + 1):
             if device.type == "cuda":
                 torch.cuda.reset_peak_memory_stats()
+
+            current_learning_rate = optimizer.param_groups[0]["lr"]
 
             train_loss, train_seconds = train_one_epoch(
                 model=model,
@@ -344,6 +393,7 @@ def main() -> None:
                     "latency_ms_per_sample": latency_ms,
                     "peak_ram_mb": peak_ram_mb,
                     "peak_vram_mb": peak_vram_mb,
+                    "learning_rate": current_learning_rate,
                 },
                 step=epoch,
             )
@@ -352,6 +402,7 @@ def main() -> None:
                 f"Epoch {epoch}: "
                 f"loss={train_loss:.4f}, "
                 f"accuracy={accuracy:.2f}%, "
+                f"lr={current_learning_rate:.6f}, "
                 f"train={train_seconds:.2f}s, "
                 f"VRAM={peak_vram_mb:.2f} MB"
             )
@@ -362,6 +413,8 @@ def main() -> None:
                     model.state_dict(),
                     checkpoint_dir / "best_model.pt",
                 )
+
+            scheduler.step()
 
         final_checkpoint = checkpoint_dir / "final_model.pt"
         torch.save(model.state_dict(), final_checkpoint)
@@ -392,7 +445,7 @@ def main() -> None:
             }
         )
 
-                # Log experiment outputs.
+        # Log experiment outputs.
         mlflow.log_artifact(str(summary_path), artifact_path="results")
         mlflow.log_artifact(str(final_checkpoint), artifact_path="checkpoints")
         mlflow.log_artifact(args.config, artifact_path="config")
@@ -421,3 +474,6 @@ def main() -> None:
 
     print("Experiment completed.")
     print(json.dumps(summary, indent=2))
+
+if __name__ == "__main__":
+    main()

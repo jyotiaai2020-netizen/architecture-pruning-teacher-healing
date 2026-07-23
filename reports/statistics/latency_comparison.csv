@@ -1,0 +1,4 @@
+first_role,second_role,paired_seeds,mean_first,mean_second,mean_difference,normality_p,test,statistic,p_value,cohens_d
+framework_validation,official_student_baseline,6,0.15296311685006,0.15123864730012426,0.0017244695499357237,0.002972233647089837,wilcoxon_signed_rank,10.0,1.0,0.043082069685206566
+framework_validation,student_baseline,2,,,,,insufficient_data,,,
+official_student_baseline,student_baseline,3,0.15123864730012426,0.1341925122000248,0.017046135100099478,0.059117526986930846,paired_t_test,0.46655011743007924,0.6867075427400349,0.38093657571308875

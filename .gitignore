@@ -52,3 +52,6 @@ tmp/
 # Generated reports/figures can be selectively committed
 reports/generated/
 figures/generated/
+
+.venv*/
+*.bak

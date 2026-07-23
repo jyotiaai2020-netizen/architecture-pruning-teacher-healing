@@ -1,0 +1,4 @@
+first_role,second_role,paired_seeds,mean_first,mean_second,mean_difference,normality_p,test,statistic,p_value,cohens_d
+framework_validation,official_student_baseline,6,57.34000000000001,85.91333333333334,-28.573333333333323,0.16049889662729683,paired_t_test,-9.708430646799984,0.0001969770227002188,-5.605165047338785
+framework_validation,student_baseline,2,,,,,insufficient_data,,,
+official_student_baseline,student_baseline,3,85.91333333333334,52.77,33.143333333333324,0.9041971494991066,paired_t_test,7.122202299481222,0.019149409296858908,5.815253826202009

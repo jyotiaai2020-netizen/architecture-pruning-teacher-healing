@@ -1,0 +1,10 @@
+{
+  "metric": "accuracy_per_mb",
+  "roles": [
+    "framework_validation",
+    "official_student_baseline",
+    "student_baseline"
+  ],
+  "number_of_runs": 5,
+  "minimum_recommended_seeds": 5
+}
