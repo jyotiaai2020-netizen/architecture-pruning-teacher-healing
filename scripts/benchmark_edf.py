@@ -171,6 +171,24 @@ def configure_runtime(cpu_threads: int, backend: str) -> None:
         raise RuntimeError("PyTorch interop threads must equal 1")
 
 
+def format_duration(seconds: float | None) -> str:
+    if seconds is None or not np.isfinite(seconds):
+        return "estimating"
+    seconds = max(0, int(round(seconds)))
+    hours, remainder = divmod(seconds, 3600)
+    minutes, seconds = divmod(remainder, 60)
+    return f"{hours:02d}:{minutes:02d}:{seconds:02d}"
+
+
+def progress(message: str, *, started: float | None = None, eta: float | None = None) -> None:
+    fields = [datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"), message]
+    if started is not None:
+        fields.append(f"elapsed={format_duration(time.perf_counter() - started)}")
+    if eta is not None:
+        fields.append(f"eta={format_duration(eta)}")
+    print("[PROGRESS] " + " | ".join(fields), flush=True)
+
+
 def seed_everything(seed: int) -> None:
     random.seed(seed)
     np.random.seed(seed)
@@ -285,9 +303,16 @@ def evaluate_capability(
     model: nn.Module, dataset: datasets.CIFAR10, seeds: Iterable[int]
 ) -> tuple[dict[str, Any], list[dict[str, Any]]]:
     per_seed: list[dict[str, Any]] = []
+    seed_values = list(seeds)
+    stage_started = time.perf_counter()
     canonical_predictions: list[dict[str, Any]] = []
 
-    for seed_index, seed in enumerate(seeds):
+    for seed_index, seed in enumerate(seed_values):
+        progress(
+            f"Capability seed {seed_index + 1}/{len(seed_values)} started (seed={seed})",
+            started=stage_started,
+        )
+        seed_started = time.perf_counter()
         seed_everything(seed)
         loader = DataLoader(
             dataset,
@@ -321,6 +346,15 @@ def evaluate_capability(
             ),
         }
         per_seed.append(metrics)
+        completed = seed_index + 1
+        elapsed = time.perf_counter() - stage_started
+        eta = elapsed / completed * (len(seed_values) - completed)
+        progress(
+            f"Capability seed {completed}/{len(seed_values)} completed "
+            f"(accuracy={metrics['clean_accuracy_percent']:.2f}%)",
+            started=stage_started,
+            eta=eta,
+        )
 
         if seed_index == 0:
             confidences = probabilities.max(dim=1).values
@@ -352,7 +386,7 @@ def evaluate_capability(
             "sample_count": EXPECTED_SAMPLES,
             "class_count": 10,
             "ece_bins": 15,
-            "seeds": list(seeds),
+            "seeds": seed_values,
             "per_seed": per_seed,
             "corruption_robustness": {
                 "status": "not_measured_by_this_script",
@@ -395,8 +429,12 @@ def benchmark_latency(
     raw_rows: list[dict[str, Any]] = []
     summaries: dict[str, Any] = {}
     peak_rss_mb = current_rss_mb()
+    batch_values = list(batch_sizes)
+    stage_started = time.perf_counter()
+    total_repetitions = len(batch_values) * repetitions
+    completed_repetitions = 0
 
-    for batch_size in batch_sizes:
+    for batch_index, batch_size in enumerate(batch_values):
         loader = DataLoader(
             dataset,
             batch_size=batch_size,
@@ -415,12 +453,28 @@ def benchmark_latency(
                 images, _ = next(iterator)
             return images
 
+        progress(
+            f"Latency batch {batch_index + 1}/{len(batch_values)} "
+            f"(size={batch_size}) warmup started; iterations={warmup_iterations}",
+            started=stage_started,
+        )
         for _ in range(warmup_iterations):
             model(next_images())
+        progress(
+            f"Latency batch {batch_index + 1}/{len(batch_values)} "
+            f"(size={batch_size}) warmup completed",
+            started=stage_started,
+        )
 
         batch_durations_ms: list[float] = []
         per_sample_latencies_ms: list[float] = []
         for repetition in range(1, repetitions + 1):
+            repetition_started = time.perf_counter()
+            progress(
+                f"Latency batch={batch_size} repetition {repetition}/{repetitions} started; "
+                f"timed_iterations={timed_iterations}",
+                started=stage_started,
+            )
             for iteration in range(1, timed_iterations + 1):
                 images = next_images()
                 started_ns = time.perf_counter_ns()
@@ -446,6 +500,19 @@ def benchmark_latency(
                         "estimated_joules_per_sample": estimated_joules_per_sample,
                     }
                 )
+
+            completed_repetitions += 1
+            elapsed = time.perf_counter() - stage_started
+            eta = (
+                elapsed / completed_repetitions
+                * (total_repetitions - completed_repetitions)
+            )
+            progress(
+                f"Latency batch={batch_size} repetition {repetition}/{repetitions} "
+                f"completed in {format_duration(time.perf_counter() - repetition_started)}",
+                started=stage_started,
+                eta=eta,
+            )
 
         total_samples = batch_size * len(batch_durations_ms)
         total_seconds = sum(batch_durations_ms) / 1000.0
@@ -576,13 +643,22 @@ def create_manifest(
 
 
 def main() -> None:
+    run_started = time.perf_counter()
     args = parse_args()
     validate_args(args)
+    progress("EDF benchmark started")
     started_at = datetime.now(timezone.utc).isoformat()
+    progress("Stage 1/6: configuring deterministic runtime", started=run_started)
     configure_runtime(args.cpu_threads, args.quantization_backend)
     seed_everything(args.seeds[0])
 
+    progress("Stage 2/6: validating checkpoint and architecture", started=run_started)
     model, checkpoint_hash, parameter_count = load_validated_model(args.checkpoint)
+    progress(
+        f"Checkpoint validated (sha256={checkpoint_hash}, parameters={parameter_count})",
+        started=run_started,
+    )
+    progress("Stage 3/6: loading CIFAR-10 test dataset", started=run_started)
     dataset = build_test_dataset(args.data_root, args.download)
     args.output_dir.mkdir(parents=True, exist_ok=False)
 
@@ -602,7 +678,9 @@ def main() -> None:
         energy_source=args.energy_source,
     )
 
+    progress("Stage 4/6: evaluating clean capability", started=run_started)
     capability, predictions = evaluate_capability(model, dataset, args.seeds)
+    progress("Stage 5/6: benchmarking latency and resources", started=run_started)
     raw_latency, resources = benchmark_latency(
         model=model,
         dataset=dataset,
@@ -660,6 +738,7 @@ def main() -> None:
         "protocol_freeze_authorized": False,
     }
 
+    progress("Stage 6/6: writing and hashing evidence", started=run_started)
     write_json(args.output_dir / "capability_metrics.json", capability)
     write_json(args.output_dir / "resource_metrics.json", resources)
     write_csv(args.output_dir / "latency_raw.csv", raw_latency)
@@ -671,6 +750,7 @@ def main() -> None:
 
     print(json.dumps(summary, indent=2, sort_keys=True))
     print(f"\nEDF evidence written to: {args.output_dir}")
+    progress("EDF benchmark completed", started=run_started)
 
 
 if __name__ == "__main__":
