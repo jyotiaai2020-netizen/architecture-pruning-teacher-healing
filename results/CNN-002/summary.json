@@ -1,0 +1,9 @@
+{
+  "experiment_id": "CNN-002",
+  "model": "resnet18",
+  "device": "cuda",
+  "best_accuracy": 52.77,
+  "parameters": 11181642,
+  "model_size_mb": 42.73060131072998,
+  "wall_clock_seconds": 12.18184103800013
+}

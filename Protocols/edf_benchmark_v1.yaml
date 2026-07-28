@@ -1,0 +1,254 @@
+protocol:
+  name: "EDF Benchmark Protocol"
+  version: "1.0.0"
+  status: "draft"
+  frozen: false
+  created_date: "2026-07-22"
+  last_updated_date: "2026-07-28"
+  purpose: >
+    Measure capability preservation and Effective Deployment Footprint (EDF)
+    consistently across FP32, PTQ, QAT, and Teacher-Healed model variants.
+
+experiment:
+  baseline_group: "E0"
+  baseline_model: "resnet18_cifar10"
+  baseline_precision: "fp32"
+
+  canonical_checkpoint:
+    role: "best_validation_checkpoint"
+    path: "checkpoints/CNN-002B/best_model.pt"
+    sha256: "d106883bd4fda76a9bd6c15ec7d5d398bc8a39d8337a9d7da11dcd817f405e36"
+    identity_verified: true
+    architecture_verified: true
+    strict_load_verified: true
+
+  comparison_checkpoint:
+    role: "final_epoch_checkpoint"
+    path: "checkpoints/CNN-002B/final_model.pt"
+    sha256: "42e8d14c9f6bb9aaf9a75e22555bed9dbcc37955cc1625137408c5b5bd7b3d1c"
+    identity_verified: true
+    architecture_verified: true
+    strict_load_verified: true
+
+  baseline_metrics:
+    clean_accuracy_percent: 93.81
+    macro_f1: 0.9381279945373535
+    negative_log_likelihood: 0.22560960793495177
+    expected_calibration_error_15_bin: 0.03151585906744003
+    sample_count: 10000
+    status: "deterministically_reproduced"
+
+  checkpoint_selection:
+    selected: "canonical_checkpoint"
+    reason: >
+      The best checkpoint outperformed the final-epoch checkpoint in accuracy,
+      macro-F1, negative log-likelihood, and expected calibration error.
+
+  dataset: "cifar10"
+  seeds: [42, 123, 2026]
+  baseline_evaluation_seed: 42
+  test_split_id: "cifar10-python-test-batch"
+  dataset_hash: "f53d8d457504f7cff4ea9e021afcf0e0ad8e24a91f3fc42091b8adef61157831"
+  config_hash: "53cdeba101abc112bd7e5415b35cf4493a231bfc10b7034ac035d88c7997b5a1"
+
+  repository:
+    git_commit: "9587602dc03d7ea323d070262d84d2896506c4f9"
+    git_commit_role: "repository HEAD recorded by MLflow at run start"
+    training_tree_clean: null
+    config_present_in_git_commit: false
+
+  historical_mlflow_run:
+    run_id: "31f62ad4367b4028b1ba425c2218e978"
+    best_accuracy_percent: 77.63
+    test_accuracy_percent: 72.26
+    relationship_to_canonical_checkpoint: "not_verified"
+
+data:
+  input_shape: [3, 32, 32]
+  class_count: 10
+  evaluation_sample_count: 10000
+
+  preprocessing:
+    normalize: true
+    mean: [0.4914, 0.4822, 0.4465]
+    std: [0.2470, 0.2435, 0.2616]
+
+  evaluation_augmentation: false
+  shuffle_test_data: false
+
+runtime:
+  framework: "pytorch"
+  framework_version: "2.13.0+cu130"
+  deployment_runtime: "pytorch"
+  deployment_runtime_version: "2.13.0+cu130"
+
+  # Replace: quantization_backend: null
+  quantization_backend: "x86"
+
+  # Add this new field
+  benchmark_device: "cpu"
+
+  device: "cuda"
+  device_name: "Tesla T4"
+  gpu_driver_version: "595.71.05"
+  gpu_memory_mib: 15360
+  cuda_runtime_version: "13.0"
+  python_version: "3.12.3"
+
+  # Keep this existing field
+  cpu_threads: 1
+  deterministic_algorithms: true
+  cudnn_benchmark: false
+  synchronize_cuda: true
+
+inference:
+  batch_sizes: [1, 8, 32, 128]
+  warmup_iterations: 50
+  timed_iterations: 500
+  repetitions: 5
+  latency_percentiles: [50, 95, 99]
+  record_raw_timings: true
+  throughput_unit: "samples_per_second"
+
+capability_metrics:
+  clean_accuracy: true
+  macro_f1: true
+  negative_log_likelihood: true
+
+  expected_calibration_error:
+    enabled: true
+    bins: 15
+
+  corruption_robustness:
+    enabled: true
+    dataset: "cifar10-c"
+    severities: [1, 2, 3, 4, 5]
+
+  failure_consistency:
+    enabled: true
+    reference_checkpoint: "E0"
+
+resource_metrics:
+  serialized_model_size_mb: true
+  peak_cpu_ram_mb: true
+  peak_gpu_vram_mb: true
+  latency_ms: true
+  throughput: true
+
+  energy:
+    enabled: true
+
+    # Replace: method: null
+    method: "estimated_cpu_power_times_inference_duration"
+
+    unit: "joules_per_inference"
+    allow_proxy: true
+    proxy_must_be_labeled: true
+
+scoring:
+  edf:
+    formula: "0.25*S_n + 0.25*M_n + 0.25*L_n + 0.25*E_n"
+    variables:
+      S_n: "serialized_size_variant / serialized_size_E0"
+      M_n: "peak_memory_variant / peak_memory_E0"
+      L_n: "latency_variant / latency_E0"
+      E_n: "energy_variant / energy_E0"
+    weights:
+      serialized_size: 0.25
+      peak_memory: 0.25
+      latency: 0.25
+      energy: 0.25
+    normalization_reference: "E0"
+    lower_is_better: true
+
+  edf:
+    formula: "0.25*S_n + 0.25*M_n + 0.25*L_n + 0.25*E_n"
+    variables:
+      S_n: "serialized_size_variant / serialized_size_E0"
+      M_n: "peak_memory_variant / peak_memory_E0"
+      L_n: "latency_variant / latency_E0"
+      E_n: "energy_variant / energy_E0"
+    weights:
+      serialized_size: 0.25
+      peak_memory: 0.25
+      latency: 0.25
+      energy: 0.25
+    normalization_reference: "E0"
+    lower_is_better: true
+
+  cpedf:
+    formula: "CapabilityScore / EDFScore"
+    higher_is_better: true
+
+outputs:
+  root_directory: "results/{experiment_id}/edf_v1"
+
+  files:
+    capability_metrics: "capability_metrics.json"
+    resource_metrics: "resource_metrics.json"
+    latency_raw: "latency_raw.csv"
+    predictions: "predictions.csv"
+    environment: "environment.json"
+    manifest: "manifest.json"
+    summary: "edf_summary.json"
+
+  preserve_raw_measurements: true
+  overwrite_existing: false
+
+validation:
+  require_checkpoint_hash: true
+  require_dataset_hash: true
+  require_config_hash: true
+  require_git_commit: true
+  require_environment_capture: true
+  require_strict_checkpoint_load: true
+  compare_fp32_and_int8_in_same_runtime: true
+  reject_missing_required_metrics: true
+
+architecture:
+  model: "resnet18_cifar10"
+  input_convolution:
+    kernel_size: [3, 3]
+    stride: [1, 1]
+    padding: [1, 1]
+  maxpool_replaced_with_identity: true
+
+  verified_parameter_count: 11173962
+  historical_mlflow_parameter_count: 11181642
+  parameter_count_difference: 7680
+  parameter_count_status: "historical_mlflow_metadata_mismatch"
+
+  strict_checkpoint_load: true
+  missing_keys: []
+  unexpected_keys: []
+
+provenance_exceptions:
+  stale_mlflow_checkpoint:
+    path: "evidence/mlflow/CNN-002B/checkpoints/final_model.pt"
+    architecture: "resnet18_standard_conv7x7"
+    status: "provenance_mismatch"
+    authorized_for_E0: false
+    preserve_as_evidence: true
+
+freeze_checklist:
+  dataset_split_confirmed: true
+  preprocessing_confirmed: true
+  runtime_versions_recorded: true
+  hardware_recorded: true
+  canonical_checkpoint_verified: true
+  predictive_metrics_reproduced: true
+
+  quantization_backend_selected: true
+  energy_method_selected: true
+  scoring_weights_approved: false
+  normalization_reference_approved: true
+  all_batch_sizes_benchmarked: false
+  all_seeds_executed: false
+  corruption_robustness_completed: false
+  failure_consistency_completed: false
+
+authorization:
+  E0_predictive_baseline_validated: true
+  E0_edf_baseline_complete: false
+  E0_frozen: false
+  quantization_authorized: false

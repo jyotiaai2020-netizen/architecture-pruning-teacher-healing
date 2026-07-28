@@ -1,0 +1,52 @@
+{
+  "class_count": 10,
+  "clean_accuracy": 0.9381,
+  "clean_accuracy_percent": 93.81,
+  "corruption_robustness": {
+    "reason": "CIFAR-10-C requires a separately verified dataset artifact.",
+    "status": "not_measured_by_this_script"
+  },
+  "ece_bins": 15,
+  "expected_calibration_error_15_bin": 0.03151585487723346,
+  "failure_consistency": {
+    "reference": "E0",
+    "status": "reference_predictions_created"
+  },
+  "macro_f1": 0.9381280028217661,
+  "negative_log_likelihood": 0.22560960054397583,
+  "per_seed": [
+    {
+      "clean_accuracy": 0.9381,
+      "clean_accuracy_percent": 93.81,
+      "expected_calibration_error_15_bin": 0.03151585487723346,
+      "macro_f1": 0.9381280028217661,
+      "negative_log_likelihood": 0.22560960054397583,
+      "sample_count": 10000,
+      "seed": 42
+    },
+    {
+      "clean_accuracy": 0.9381,
+      "clean_accuracy_percent": 93.81,
+      "expected_calibration_error_15_bin": 0.03151585487723346,
+      "macro_f1": 0.9381280028217661,
+      "negative_log_likelihood": 0.22560960054397583,
+      "sample_count": 10000,
+      "seed": 123
+    },
+    {
+      "clean_accuracy": 0.9381,
+      "clean_accuracy_percent": 93.81,
+      "expected_calibration_error_15_bin": 0.03151585487723346,
+      "macro_f1": 0.9381280028217661,
+      "negative_log_likelihood": 0.22560960054397583,
+      "sample_count": 10000,
+      "seed": 2026
+    }
+  ],
+  "sample_count": 10000,
+  "seeds": [
+    42,
+    123,
+    2026
+  ]
+}
