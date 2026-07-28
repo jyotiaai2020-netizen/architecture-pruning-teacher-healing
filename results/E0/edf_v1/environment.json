@@ -1,0 +1,54 @@
+{
+  "captured_at_utc": "2026-07-28T22:55:10.666369+00:00",
+  "config": {
+    "assumed_cpu_watts": 17.5,
+    "batch_sizes": [
+      1,
+      8,
+      32,
+      128
+    ],
+    "checkpoint": "checkpoints/CNN-002B/best_model.pt",
+    "checkpoint_sha256": "d106883bd4fda76a9bd6c15ec7d5d398bc8a39d8337a9d7da11dcd817f405e36",
+    "cpu_threads": 1,
+    "data_root": "data",
+    "energy_source": "Allocation proxy: Xeon Platinum 8259CL reported package TDP 210 W and 24 physical cores; EC2 guest exposes 2 physical cores/4 vCPUs; assumed CPU watts = 210*(2/24)=17.5 W. This is a TDP-allocation proxy, not measured electrical power.",
+    "output_dir": "results/E0/edf_v1",
+    "quantization_backend": "x86",
+    "repetitions": 5,
+    "seeds": [
+      42,
+      123,
+      2026
+    ],
+    "timed_iterations": 500,
+    "warmup_iterations": 50
+  },
+  "cpu_description": "Architecture:                            x86_64\nCPU op-mode(s):                          32-bit, 64-bit\nAddress sizes:                           46 bits physical, 48 bits virtual\nByte Order:                              Little Endian\nCPU(s):                                  4\nOn-line CPU(s) list:                     0-3\nVendor ID:                               GenuineIntel\nModel name:                              Intel(R) Xeon(R) Platinum 8259CL CPU @ 2.50GHz\nCPU family:                              6\nModel:                                   85\nThread(s) per core:                      2\nCore(s) per socket:                      2\nSocket(s):                               1\nStepping:                                7\nBogoMIPS:                                4999.99\nFlags:                                   fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss ht syscall nx pdpe1gb rdtscp lm constant_tsc rep_good nopl xtopology nonstop_tsc cpuid aperfmperf tsc_known_freq pni pclmulqdq ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch cpuid_fault pti fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid mpx avx512f avx512dq rdseed adx smap clflushopt clwb avx512cd avx512bw avx512vl xsaveopt xsavec xgetbv1 xsaves ida arat pku ospke avx512_vnni\nHypervisor vendor:                       KVM\nVirtualization type:                     full\nL1d cache:                               64 KiB (2 instances)\nL1i cache:                               64 KiB (2 instances)\nL2 cache:                                2 MiB (2 instances)\nL3 cache:                                35.8 MiB (1 instance)\nNUMA node(s):                            1\nNUMA node0 CPU(s):                       0-3\nVulnerability Gather data sampling:      Unknown: Dependent on hypervisor status\nVulnerability Ghostwrite:                Not affected\nVulnerability Indirect target selection: Mitigation; Aligned branch/return thunks\nVulnerability Itlb multihit:             KVM: Mitigation: VMX unsupported\nVulnerability L1tf:                      Mitigation; PTE Inversion\nVulnerability Mds:                       Vulnerable: Clear CPU buffers attempted, no microcode; SMT Host state unknown\nVulnerability Meltdown:                  Mitigation; PTI\nVulnerability Mmio stale data:           Vulnerable: Clear CPU buffers attempted, no microcode; SMT Host state unknown\nVulnerability Old microcode:             Not affected\nVulnerability Reg file data sampling:    Not affected\nVulnerability Retbleed:                  Vulnerable\nVulnerability Spec rstack overflow:      Not affected\nVulnerability Spec store bypass:         Vulnerable\nVulnerability Spectre v1:                Mitigation; usercopy/swapgs barriers and __user pointer sanitization\nVulnerability Spectre v2:                Mitigation; Retpolines; STIBP disabled; RSB filling; PBRSB-eIBRS Not affected; BHI Retpoline\nVulnerability Srbds:                     Not affected\nVulnerability Tsa:                       Not affected\nVulnerability Tsx async abort:           Not affected\nVulnerability Vmscape:                   Not affected",
+  "cpu_threads": 1,
+  "cuda_available": true,
+  "cuda_runtime_version": "13.0",
+  "deployment_device": "cpu",
+  "environment_threads": {
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1"
+  },
+  "git_commit": "2df4393998e01b45566e882fcf36e18ac50c9721",
+  "git_tree_status": "M Protocols/edf_benchmark_v1.yaml\n?? data/\n?? evidence/\n?? scripts/benchmark_edf.py",
+  "interop_threads": 1,
+  "machine": "x86_64",
+  "platform": "Linux-6.17.0-1019-aws-x86_64-with-glibc2.39",
+  "processor": "x86_64",
+  "python_version": "3.12.3",
+  "pytorch_version": "2.13.0+cu130",
+  "quantization_backend": "x86",
+  "supported_quantization_engines": [
+    "qnnpack",
+    "onednn",
+    "x86",
+    "fbgemm"
+  ],
+  "torchvision_version": "0.28.0+cu130"
+}

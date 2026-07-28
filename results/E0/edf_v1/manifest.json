@@ -1,0 +1,46 @@
+{
+  "checkpoint": {
+    "path": "checkpoints/CNN-002B/best_model.pt",
+    "role": "canonical_best_validation_checkpoint",
+    "sha256": "d106883bd4fda76a9bd6c15ec7d5d398bc8a39d8337a9d7da11dcd817f405e36"
+  },
+  "completed_at_utc": "2026-07-28T22:55:10.813292+00:00",
+  "energy_proxy": {
+    "assumed_cpu_watts": 17.5,
+    "formula": "assumed_cpu_watts * measured_batch_seconds / batch_size",
+    "is_proxy": true,
+    "method": "estimated_cpu_power_times_inference_duration",
+    "source": "Allocation proxy: Xeon Platinum 8259CL reported package TDP 210 W and 24 physical cores; EC2 guest exposes 2 physical cores/4 vCPUs; assumed CPU watts = 210*(2/24)=17.5 W. This is a TDP-allocation proxy, not measured electrical power."
+  },
+  "experiment_id": "E0",
+  "files": {
+    "capability_metrics.json": {
+      "bytes": 1455,
+      "sha256": "d898935dfb431d904728befd5932061adfc3a9735e58a41f2eb9a3bc2d637ce0"
+    },
+    "edf_summary.json": {
+      "bytes": 3463,
+      "sha256": "d58f6abd213ccdf300f9fc8ad30f8537631b368aa1c6cf07d6abefde44a807d3"
+    },
+    "environment.json": {
+      "bytes": 4901,
+      "sha256": "432aaa2a19a4c94f8026006eb087fb67b756d9ecbdeaca71115fc9ea02f6faa5"
+    },
+    "latency_raw.csv": {
+      "bytes": 685010,
+      "sha256": "d49fd86e3268c58a3d4eac0f65c5e036ebc36d02c8c02b8f857b04d034e99b39"
+    },
+    "predictions.csv": {
+      "bytes": 367848,
+      "sha256": "6ca5b18db8d1b36d6e28e89665cfeac1e79912feba7ad2f683749967e8f5a0ec"
+    },
+    "resource_metrics.json": {
+      "bytes": 2634,
+      "sha256": "01da26f431ceb3c95469b1d8e423f0cb2ef1ea3e1c0267aa445f0516a72c6ea4"
+    }
+  },
+  "schema_version": "edf_v1",
+  "started_at_utc": "2026-07-28T21:10:18.157942+00:00",
+  "status": "benchmark_completed_pending_protocol_freeze",
+  "variant": "FP32"
+}

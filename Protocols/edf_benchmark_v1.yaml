@@ -81,7 +81,12 @@ runtime:
   framework_version: "2.13.0+cu130"
   deployment_runtime: "pytorch"
   deployment_runtime_version: "2.13.0+cu130"
-  quantization_backend: null
+
+  # Replace: quantization_backend: null
+  quantization_backend: "x86"
+
+  # Add this new field
+  benchmark_device: "cpu"
 
   device: "cuda"
   device_name: "Tesla T4"
@@ -90,6 +95,7 @@ runtime:
   cuda_runtime_version: "13.0"
   python_version: "3.12.3"
 
+  # Keep this existing field
   cpu_threads: 1
   deterministic_algorithms: true
   cudnn_benchmark: false
@@ -131,24 +137,29 @@ resource_metrics:
 
   energy:
     enabled: true
-    method: null
+
+    # Replace: method: null
+    method: "estimated_cpu_power_times_inference_duration"
+
     unit: "joules_per_inference"
     allow_proxy: true
     proxy_must_be_labeled: true
 
 scoring:
-  capability:
-    formula: "0.45*A + 0.15*C + 0.25*R + 0.15*F"
+  edf:
+    formula: "0.25*S_n + 0.25*M_n + 0.25*L_n + 0.25*E_n"
     variables:
-      A: "clean_accuracy_normalized_0_to_1"
-      C: "1_minus_expected_calibration_error"
-      R: "corruption_robustness_normalized_0_to_1"
-      F: "failure_consistency_normalized_0_to_1"
+      S_n: "serialized_size_variant / serialized_size_E0"
+      M_n: "peak_memory_variant / peak_memory_E0"
+      L_n: "latency_variant / latency_E0"
+      E_n: "energy_variant / energy_E0"
     weights:
-      clean_accuracy: 0.45
-      calibration: 0.15
-      corruption_robustness: 0.25
-      failure_consistency: 0.15
+      serialized_size: 0.25
+      peak_memory: 0.25
+      latency: 0.25
+      energy: 0.25
+    normalization_reference: "E0"
+    lower_is_better: true
 
   edf:
     formula: "0.25*S_n + 0.25*M_n + 0.25*L_n + 0.25*E_n"
@@ -227,10 +238,10 @@ freeze_checklist:
   canonical_checkpoint_verified: true
   predictive_metrics_reproduced: true
 
-  quantization_backend_selected: false
-  energy_method_selected: false
+  quantization_backend_selected: true
+  energy_method_selected: true
   scoring_weights_approved: false
-  normalization_reference_approved: false
+  normalization_reference_approved: true
   all_batch_sizes_benchmarked: false
   all_seeds_executed: false
   corruption_robustness_completed: false

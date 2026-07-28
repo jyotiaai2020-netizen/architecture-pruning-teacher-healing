@@ -1,0 +1,85 @@
+{
+  "capability": {
+    "clean_accuracy": 0.9381,
+    "clean_accuracy_percent": 93.81,
+    "expected_calibration_error_15_bin": 0.03151585487723346,
+    "macro_f1": 0.9381280028217661,
+    "negative_log_likelihood": 0.22560960054397583
+  },
+  "capability_score": null,
+  "checkpoint_sha256": "d106883bd4fda76a9bd6c15ec7d5d398bc8a39d8337a9d7da11dcd817f405e36",
+  "cpedf_score": null,
+  "edf_normalization_reference": "E0",
+  "edf_score": 1.0,
+  "experiment_id": "E0",
+  "parameter_count": 11173962,
+  "protocol_freeze_authorized": false,
+  "resources": {
+    "batch_sizes": {
+      "1": {
+        "batch_size": 1,
+        "estimated_joules_per_inference": 0.33479017161799995,
+        "mean_latency_ms_per_sample": 19.1308669496,
+        "measurement_count": 2500,
+        "p50_latency_ms_per_sample": 19.092443,
+        "p95_latency_ms_per_sample": 19.6131194,
+        "p99_latency_ms_per_sample": 20.051375089999997,
+        "sample_count": 2500,
+        "throughput_samples_per_second": 52.271546429886634,
+        "timed_inference_seconds": 47.827167374
+      },
+      "128": {
+        "batch_size": 128,
+        "estimated_joules_per_inference": 0.24535464459739847,
+        "mean_latency_ms_per_sample": 14.020265405565626,
+        "measurement_count": 2500,
+        "p50_latency_ms_per_sample": 14.03449209765625,
+        "p95_latency_ms_per_sample": 14.178317675,
+        "p99_latency_ms_per_sample": 14.253702760703122,
+        "sample_count": 320000,
+        "throughput_samples_per_second": 71.32532595303294,
+        "timed_inference_seconds": 4486.484929781001
+      },
+      "32": {
+        "batch_size": 32,
+        "estimated_joules_per_inference": 0.19458557038965626,
+        "mean_latency_ms_per_sample": 11.1191754508375,
+        "measurement_count": 2500,
+        "p50_latency_ms_per_sample": 11.12337134375,
+        "p95_latency_ms_per_sample": 11.336196662499999,
+        "p99_latency_ms_per_sample": 11.562407855624995,
+        "sample_count": 80000,
+        "throughput_samples_per_second": 89.93472622330819,
+        "timed_inference_seconds": 889.534036067
+      },
+      "8": {
+        "batch_size": 8,
+        "estimated_joules_per_inference": 0.21594221920425002,
+        "mean_latency_ms_per_sample": 12.3395553831,
+        "measurement_count": 2500,
+        "p50_latency_ms_per_sample": 12.383024124999999,
+        "p95_latency_ms_per_sample": 12.81969943125,
+        "p99_latency_ms_per_sample": 12.969331621249998,
+        "sample_count": 20000,
+        "throughput_samples_per_second": 81.04019706978903,
+        "timed_inference_seconds": 246.791107662
+      }
+    },
+    "energy": {
+      "assumed_cpu_watts": 17.5,
+      "enabled": true,
+      "formula": "assumed_cpu_watts * measured_batch_seconds / batch_size",
+      "is_proxy": true,
+      "method": "estimated_cpu_power_times_inference_duration",
+      "source": "Allocation proxy: Xeon Platinum 8259CL reported package TDP 210 W and 24 physical cores; EC2 guest exposes 2 physical cores/4 vCPUs; assumed CPU watts = 210*(2/24)=17.5 W. This is a TDP-allocation proxy, not measured electrical power.",
+      "unit": "joules_per_inference"
+    },
+    "peak_cpu_ram_mb": 840.32421875,
+    "peak_gpu_vram_mb": null,
+    "serialized_checkpoint_size_bytes": 44775435,
+    "serialized_checkpoint_size_mib": 42.70118236541748
+  },
+  "schema_version": "edf_v1",
+  "scoring_status": "pending CIFAR-10-C, failure-consistency comparison, and approved weights",
+  "variant": "FP32"
+}
