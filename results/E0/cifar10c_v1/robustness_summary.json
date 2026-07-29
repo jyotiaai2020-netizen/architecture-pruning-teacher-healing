@@ -1,0 +1,68 @@
+{
+  "batch_size": 128,
+  "checkpoint_sha256": "d106883bd4fda76a9bd6c15ec7d5d398bc8a39d8337a9d7da11dcd817f405e36",
+  "cpu_threads": 1,
+  "dataset": {
+    "condition_count": 75,
+    "file_sha256": {
+      "brightness.npy": "3bb5990e41b0212b62bc0b4385f4f95d68ecb94da627eacba4552381228a17c3",
+      "contrast.npy": "cb5e3765f52a172a380ce8c8c3096b78669d2f01f4f6e958ee30729f680bb9fb",
+      "defocus_blur.npy": "6140f9954d10d5c606d598ca6e26d5d94a301894e94493035f03182f551b745e",
+      "elastic_transform.npy": "664626e48ed03abec17614d2c7a2cf827bc82778e2319573c73a49a99ca0b21a",
+      "fog.npy": "48f8f040b3aa25850119400ac2afacf72affdaaa3fcdd5daff425e876f996e50",
+      "frost.npy": "8be9ab8d9095b3fb3ebf4dd60f0a83651be115c3ac77c8adc5b3e0d3add5ad8c",
+      "gaussian_noise.npy": "269c7f8f1b896cb96cf194814171d0cfc6d73a1546cd718ba629756a906ecaf1",
+      "glass_blur.npy": "ec1586616c585b8f8742dc0003d9bebe07d822ed3c997b6215003d5afd66bdfa",
+      "impulse_noise.npy": "9eaebc6e508ebe05382c2631177ca1503f6f3aea68090c509d24506f86b1164f",
+      "jpeg_compression.npy": "60bd735b9bba513df1f22adc460942de6ef03f9e5870340464db1fc7e6331d51",
+      "labels.npy": "e6d972b1238665d8ef54aae5affe8e292dda1eb88a6840bf0f5988cdb649da7b",
+      "motion_blur.npy": "34baad18726fabefeb69b5cbedefda41ee7969dbed1562740ef9e1095d5dd954",
+      "pixelate.npy": "6657f75ac66c907ad8206248bc1f48bef0dac219a1617f4dfd1b15e46ccf5ac7",
+      "shot_noise.npy": "645936b5a5cf0b72151289c598b61b59429c917b346256e63d399a8c3a5ed078",
+      "snow.npy": "84d3fdf8b17e18b7657804321dc13dd260ea1151c9bc91e55e13656e5f5410f2",
+      "zoom_blur.npy": "a3af830b0759addce9ac555f938643f3dcf2b9fef9df7f4479750a568c62006f"
+    },
+    "image_evaluations": 750000,
+    "name": "CIFAR-10-C",
+    "severity_levels": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "source": "https://zenodo.org/records/2535967",
+    "standard_corruptions": [
+      "gaussian_noise",
+      "shot_noise",
+      "impulse_noise",
+      "defocus_blur",
+      "glass_blur",
+      "motion_blur",
+      "zoom_blur",
+      "snow",
+      "frost",
+      "fog",
+      "brightness",
+      "contrast",
+      "elastic_transform",
+      "pixelate",
+      "jpeg_compression"
+    ]
+  },
+  "experiment_id": "E0",
+  "failure_consistency": "prediction-level reference created",
+  "protocol_freeze_authorized": false,
+  "robustness": {
+    "aggregation": "unweighted mean across 15 corruptions and 5 severities",
+    "mean_corruption_accuracy": 0.7126946666666667,
+    "mean_corruption_error": 0.28730533333333336,
+    "mean_ece_15_bin": 0.18687581814195714,
+    "mean_macro_f1": 0.7112788182731726,
+    "mean_negative_log_likelihood": 1.381213944753011,
+    "normalized_alexnet_mce": null
+  },
+  "schema_version": "cifar10c_v1",
+  "seed": 42,
+  "variant": "FP32"
+}
