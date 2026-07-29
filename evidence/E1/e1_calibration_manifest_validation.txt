@@ -1,0 +1,10 @@
+2026-07-29T04:23:28+00:00
+canonical_manifest_sha256 cb3b5e067ca983f635d89ef9e855d9017a885e8a4788246afde5830881cc0a19
+formatted_file_sha256 aad2e3f453df60c8d8d1f00211ec21581d5ad80502c7a0aab59f1f260254735a
+dataset CIFAR-10
+split train
+dataset_size 50000
+calibration_size 512
+seed 20260729
+unique_indices 512
+calibration_manifest_freeze PASS
