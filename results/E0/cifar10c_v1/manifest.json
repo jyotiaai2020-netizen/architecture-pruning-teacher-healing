@@ -1,0 +1,19 @@
+{
+  "created_at_utc": "2026-07-29T02:53:43.536474+00:00",
+  "files": {
+    "condition_metrics.csv": {
+      "bytes": 8875,
+      "sha256": "b9e2fb34708212ceab9230d9987d9a22e3218c6fdb1b07f2c16bfaebd7b9bc91"
+    },
+    "predictions.csv": {
+      "bytes": 35295599,
+      "sha256": "743aed4c98f91ed994bfd15b5ad316876a970fe33d5e9e448b1157e9781705a4"
+    },
+    "robustness_summary.json": {
+      "bytes": 2773,
+      "sha256": "cc6a575a29f2b4c9bad9d1d30f88f833f47105f572de0840fb5893c50555a9a7"
+    }
+  },
+  "schema_version": "cifar10c_v1",
+  "status": "completed_pending_protocol_freeze"
+}
