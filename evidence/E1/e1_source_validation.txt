@@ -1,0 +1,9 @@
+2026-07-29T04:06:31+00:00
+d106883bd4fda76a9bd6c15ec7d5d398bc8a39d8337a9d7da11dcd817f405e36  checkpoints/CNN-002B/best_model.pt
+42e8d14c9f6bb9aaf9a75e22555bed9dbcc37955cc1625137408c5b5bd7b3d1c  checkpoints/CNN-002B/final_model.pt
+source_commit 6e57b6d3049197308c659d73699b1c5a9de40b21
+state_entries 122
+parameters 11173962
+missing_keys []
+unexpected_keys []
+strict_load PASS
