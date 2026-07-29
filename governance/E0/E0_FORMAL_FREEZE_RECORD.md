@@ -1,12 +1,12 @@
 # E0 Formal Freeze Record
 
-**Freeze ID:** `FREEZE-E0-2026-07-29`  
-**Experiment:** E0 — CNN-002B FP32 Baseline  
-**Freeze date:** 2026-07-29  
-**Decision owner:** Principal Researcher  
-**Freeze status:** APPROVED  
-**Evidence commit:** `ad8f55a`  
-**Evidence integration:** Commit confirmed reachable from `origin/main`  
+**Freeze ID:** `FREEZE-E0-2026-07-29`
+**Experiment:** E0 — CNN-002B FP32 Baseline
+**Freeze date:** 2026-07-29
+**Decision owner:** Principal Researcher
+**Freeze status:** APPROVED
+**Evidence commit:** `ad8f55a`
+**Evidence integration:** Commit confirmed reachable from `origin/main`
 **Scoring specification:** `CR-EDF-SPEC-v1.0`
 
 ## Freeze declaration
@@ -85,6 +85,6 @@ By approving this record, the Principal Researcher confirms that the listed
 gates have been reviewed and that E0 is the immutable reference for subsequent
 experiments.
 
-**Approved by:** Principal Researcher  
-**Approval date:** 2026-07-29  
+**Approved by:** Principal Researcher
+**Approval date:** 2026-07-29
 **Decision:** Freeze E0 and authorize controlled E1 INT8 PTQ execution

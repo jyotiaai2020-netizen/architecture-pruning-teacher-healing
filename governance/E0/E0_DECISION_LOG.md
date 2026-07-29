@@ -1,11 +1,11 @@
 # E0 Decision Log
 
-**Experiment:** E0 — CNN-002B FP32 Baseline  
-**Record date:** 2026-07-29  
-**Decision owner:** Principal Researcher  
-**Status:** Approved  
-**Authoritative evidence commit:** `ad8f55a`  
-**Repository integration:** Confirmed in `origin/main` on 2026-07-29  
+**Experiment:** E0 — CNN-002B FP32 Baseline
+**Record date:** 2026-07-29
+**Decision owner:** Principal Researcher
+**Status:** Approved
+**Authoritative evidence commit:** `ad8f55a`
+**Repository integration:** Confirmed in `origin/main` on 2026-07-29
 
 ## Purpose
 

@@ -1,9 +1,9 @@
 # Approved Capability–Robustness–EDF Scoring Specification
 
-**Specification ID:** `CR-EDF-SPEC-v1.0`  
-**Approval date:** 2026-07-29  
-**Baseline:** E0 CNN-002B FP32  
-**Baseline evidence commit:** `ad8f55a`  
+**Specification ID:** `CR-EDF-SPEC-v1.0`
+**Approval date:** 2026-07-29
+**Baseline:** E0 CNN-002B FP32
+**Baseline evidence commit:** `ad8f55a`
 **Status:** Approved for E1 and subsequent controlled comparisons
 
 ## 1. Objective
