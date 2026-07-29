@@ -1,0 +1,220 @@
+[PROGRESS] 2026-07-28T23:45:13Z | CIFAR-10-C evaluation started | elapsed=00:00:00
+[PROGRESS] 2026-07-28T23:45:13Z | Condition 1/75: gaussian_noise, severity=1 | elapsed=00:00:01
+[PROGRESS] 2026-07-28T23:47:44Z | Completed 1/75; accuracy=77.53% | elapsed=00:02:31 | eta=03:06:35
+[PROGRESS] 2026-07-28T23:47:44Z | Condition 2/75: gaussian_noise, severity=2 | elapsed=00:02:31
+[PROGRESS] 2026-07-28T23:50:15Z | Completed 2/75; accuracy=53.81% | elapsed=00:05:02 | eta=03:04:00
+[PROGRESS] 2026-07-28T23:50:15Z | Condition 3/75: gaussian_noise, severity=3 | elapsed=00:05:02
+[PROGRESS] 2026-07-28T23:52:45Z | Completed 3/75; accuracy=33.02% | elapsed=00:07:33 | eta=03:01:07
+[PROGRESS] 2026-07-28T23:52:45Z | Condition 4/75: gaussian_noise, severity=4 | elapsed=00:07:33
+[PROGRESS] 2026-07-28T23:55:17Z | Completed 4/75; accuracy=26.26% | elapsed=00:10:04 | eta=02:58:39
+[PROGRESS] 2026-07-28T23:55:17Z | Condition 5/75: gaussian_noise, severity=5 | elapsed=00:10:04
+[PROGRESS] 2026-07-28T23:57:48Z | Completed 5/75; accuracy=22.17% | elapsed=00:12:35 | eta=02:56:09
+[PROGRESS] 2026-07-28T23:57:48Z | Condition 6/75: shot_noise, severity=1 | elapsed=00:12:35
+[PROGRESS] 2026-07-29T00:00:18Z | Completed 6/75; accuracy=85.07% | elapsed=00:15:05 | eta=02:53:32
+[PROGRESS] 2026-07-29T00:00:18Z | Condition 7/75: shot_noise, severity=2 | elapsed=00:15:05
+[PROGRESS] 2026-07-29T00:02:48Z | Completed 7/75; accuracy=75.78% | elapsed=00:17:36 | eta=02:50:54
+[PROGRESS] 2026-07-29T00:02:48Z | Condition 8/75: shot_noise, severity=3 | elapsed=00:17:36
+[PROGRESS] 2026-07-29T00:05:19Z | Completed 8/75; accuracy=49.16% | elapsed=00:20:06 | eta=02:48:23
+[PROGRESS] 2026-07-29T00:05:19Z | Condition 9/75: shot_noise, severity=4 | elapsed=00:20:06
+[PROGRESS] 2026-07-29T00:07:50Z | Completed 9/75; accuracy=39.76% | elapsed=00:22:37 | eta=02:45:51
+[PROGRESS] 2026-07-29T00:07:50Z | Condition 10/75: shot_noise, severity=5 | elapsed=00:22:37
+[PROGRESS] 2026-07-29T00:10:20Z | Completed 10/75; accuracy=27.62% | elapsed=00:25:07 | eta=02:43:16
+[PROGRESS] 2026-07-29T00:10:20Z | Condition 11/75: impulse_noise, severity=1 | elapsed=00:25:08
+[PROGRESS] 2026-07-29T00:12:51Z | Completed 11/75; accuracy=82.84% | elapsed=00:27:38 | eta=02:40:48
+[PROGRESS] 2026-07-29T00:12:51Z | Condition 12/75: impulse_noise, severity=2 | elapsed=00:27:38
+[PROGRESS] 2026-07-29T00:15:22Z | Completed 12/75; accuracy=71.07% | elapsed=00:30:10 | eta=02:38:21
+[PROGRESS] 2026-07-29T00:15:22Z | Condition 13/75: impulse_noise, severity=3 | elapsed=00:30:10
+[PROGRESS] 2026-07-29T00:17:53Z | Completed 13/75; accuracy=60.54% | elapsed=00:32:40 | eta=02:35:49
+[PROGRESS] 2026-07-29T00:17:53Z | Condition 14/75: impulse_noise, severity=4 | elapsed=00:32:40
+[PROGRESS] 2026-07-29T00:20:24Z | Completed 14/75; accuracy=35.82% | elapsed=00:35:11 | eta=02:33:20
+[PROGRESS] 2026-07-29T00:20:24Z | Condition 15/75: impulse_noise, severity=5 | elapsed=00:35:11
+[PROGRESS] 2026-07-29T00:22:54Z | Completed 15/75; accuracy=19.25% | elapsed=00:37:42 | eta=02:30:47
+[PROGRESS] 2026-07-29T00:22:55Z | Condition 16/75: defocus_blur, severity=1 | elapsed=00:37:42
+[PROGRESS] 2026-07-29T00:25:26Z | Completed 16/75; accuracy=93.69% | elapsed=00:40:13 | eta=02:28:17
+[PROGRESS] 2026-07-29T00:25:26Z | Condition 17/75: defocus_blur, severity=2 | elapsed=00:40:13
+[PROGRESS] 2026-07-29T00:27:56Z | Completed 17/75; accuracy=92.15% | elapsed=00:42:44 | eta=02:25:47
+[PROGRESS] 2026-07-29T00:27:56Z | Condition 18/75: defocus_blur, severity=3 | elapsed=00:42:44
+[PROGRESS] 2026-07-29T00:30:27Z | Completed 18/75; accuracy=86.60% | elapsed=00:45:15 | eta=02:23:17
+[PROGRESS] 2026-07-29T00:30:27Z | Condition 19/75: defocus_blur, severity=4 | elapsed=00:45:15
+[PROGRESS] 2026-07-29T00:32:58Z | Completed 19/75; accuracy=75.62% | elapsed=00:47:46 | eta=02:20:46
+[PROGRESS] 2026-07-29T00:32:58Z | Condition 20/75: defocus_blur, severity=5 | elapsed=00:47:46
+[PROGRESS] 2026-07-29T00:35:29Z | Completed 20/75; accuracy=51.65% | elapsed=00:50:16 | eta=02:18:15
+[PROGRESS] 2026-07-29T00:35:29Z | Condition 21/75: glass_blur, severity=1 | elapsed=00:50:17
+[PROGRESS] 2026-07-29T00:38:00Z | Completed 21/75; accuracy=52.78% | elapsed=00:52:48 | eta=02:15:46
+[PROGRESS] 2026-07-29T00:38:00Z | Condition 22/75: glass_blur, severity=2 | elapsed=00:52:48
+[PROGRESS] 2026-07-29T00:40:31Z | Completed 22/75; accuracy=54.40% | elapsed=00:55:18 | eta=02:13:14
+[PROGRESS] 2026-07-29T00:40:31Z | Condition 23/75: glass_blur, severity=3 | elapsed=00:55:18
+[PROGRESS] 2026-07-29T00:43:01Z | Completed 23/75; accuracy=58.41% | elapsed=00:57:49 | eta=02:10:42
+[PROGRESS] 2026-07-29T00:43:01Z | Condition 24/75: glass_blur, severity=4 | elapsed=00:57:49
+[PROGRESS] 2026-07-29T00:45:32Z | Completed 24/75; accuracy=43.32% | elapsed=01:00:19 | eta=02:08:11
+[PROGRESS] 2026-07-29T00:45:32Z | Condition 25/75: glass_blur, severity=5 | elapsed=01:00:19
+[PROGRESS] 2026-07-29T00:48:03Z | Completed 25/75; accuracy=46.81% | elapsed=01:02:50 | eta=02:05:41
+[PROGRESS] 2026-07-29T00:48:03Z | Condition 26/75: motion_blur, severity=1 | elapsed=01:02:51
+[PROGRESS] 2026-07-29T00:50:35Z | Completed 26/75; accuracy=87.95% | elapsed=01:05:22 | eta=02:03:12
+[PROGRESS] 2026-07-29T00:50:35Z | Condition 27/75: motion_blur, severity=2 | elapsed=01:05:22
+[PROGRESS] 2026-07-29T00:53:05Z | Completed 27/75; accuracy=78.87% | elapsed=01:07:53 | eta=02:00:40
+[PROGRESS] 2026-07-29T00:53:05Z | Condition 28/75: motion_blur, severity=3 | elapsed=01:07:53
+[PROGRESS] 2026-07-29T00:55:36Z | Completed 28/75; accuracy=68.35% | elapsed=01:10:23 | eta=01:58:09
+[PROGRESS] 2026-07-29T00:55:36Z | Condition 29/75: motion_blur, severity=4 | elapsed=01:10:23
+[PROGRESS] 2026-07-29T00:58:07Z | Completed 29/75; accuracy=68.48% | elapsed=01:12:55 | eta=01:55:39
+[PROGRESS] 2026-07-29T00:58:07Z | Condition 30/75: motion_blur, severity=5 | elapsed=01:12:55
+[PROGRESS] 2026-07-29T01:00:38Z | Completed 30/75; accuracy=58.73% | elapsed=01:15:25 | eta=01:53:08
+[PROGRESS] 2026-07-29T01:00:38Z | Condition 31/75: zoom_blur, severity=1 | elapsed=01:15:26
+[PROGRESS] 2026-07-29T01:03:10Z | Completed 31/75; accuracy=85.42% | elapsed=01:17:57 | eta=01:50:39
+[PROGRESS] 2026-07-29T01:03:10Z | Condition 32/75: zoom_blur, severity=2 | elapsed=01:17:57
+[PROGRESS] 2026-07-29T01:05:42Z | Completed 32/75; accuracy=81.48% | elapsed=01:20:29 | eta=01:48:09
+[PROGRESS] 2026-07-29T01:05:42Z | Condition 33/75: zoom_blur, severity=3 | elapsed=01:20:29
+[PROGRESS] 2026-07-29T01:08:13Z | Completed 33/75; accuracy=73.97% | elapsed=01:23:00 | eta=01:45:38
+[PROGRESS] 2026-07-29T01:08:13Z | Condition 34/75: zoom_blur, severity=4 | elapsed=01:23:00
+[PROGRESS] 2026-07-29T01:10:43Z | Completed 34/75; accuracy=67.24% | elapsed=01:25:31 | eta=01:43:07
+[PROGRESS] 2026-07-29T01:10:43Z | Condition 35/75: zoom_blur, severity=5 | elapsed=01:25:31
+[PROGRESS] 2026-07-29T01:13:15Z | Completed 35/75; accuracy=56.27% | elapsed=01:28:02 | eta=01:40:37
+[PROGRESS] 2026-07-29T01:13:15Z | Condition 36/75: snow, severity=1 | elapsed=01:28:02
+[PROGRESS] 2026-07-29T01:15:46Z | Completed 36/75; accuracy=88.02% | elapsed=01:30:33 | eta=01:38:06
+[PROGRESS] 2026-07-29T01:15:46Z | Condition 37/75: snow, severity=2 | elapsed=01:30:33
+[PROGRESS] 2026-07-29T01:18:17Z | Completed 37/75; accuracy=78.89% | elapsed=01:33:04 | eta=01:35:35
+[PROGRESS] 2026-07-29T01:18:17Z | Condition 38/75: snow, severity=3 | elapsed=01:33:04
+[PROGRESS] 2026-07-29T01:20:48Z | Completed 38/75; accuracy=81.71% | elapsed=01:35:35 | eta=01:33:04
+[PROGRESS] 2026-07-29T01:20:48Z | Condition 39/75: snow, severity=4 | elapsed=01:35:35
+[PROGRESS] 2026-07-29T01:23:18Z | Completed 39/75; accuracy=79.60% | elapsed=01:38:05 | eta=01:30:33
+[PROGRESS] 2026-07-29T01:23:18Z | Condition 40/75: snow, severity=5 | elapsed=01:38:05
+[PROGRESS] 2026-07-29T01:25:49Z | Completed 40/75; accuracy=74.79% | elapsed=01:40:36 | eta=01:28:02
+[PROGRESS] 2026-07-29T01:25:50Z | Condition 41/75: frost, severity=1 | elapsed=01:40:37
+[PROGRESS] 2026-07-29T01:28:21Z | Completed 41/75; accuracy=89.11% | elapsed=01:43:08 | eta=01:25:32
+[PROGRESS] 2026-07-29T01:28:21Z | Condition 42/75: frost, severity=2 | elapsed=01:43:08
+[PROGRESS] 2026-07-29T01:30:52Z | Completed 42/75; accuracy=83.71% | elapsed=01:45:39 | eta=01:23:01
+[PROGRESS] 2026-07-29T01:30:52Z | Condition 43/75: frost, severity=3 | elapsed=01:45:39
+[PROGRESS] 2026-07-29T01:33:23Z | Completed 43/75; accuracy=74.02% | elapsed=01:48:10 | eta=01:20:30
+[PROGRESS] 2026-07-29T01:33:23Z | Condition 44/75: frost, severity=4 | elapsed=01:48:10
+[PROGRESS] 2026-07-29T01:35:54Z | Completed 44/75; accuracy=71.56% | elapsed=01:50:41 | eta=01:17:59
+[PROGRESS] 2026-07-29T01:35:54Z | Condition 45/75: frost, severity=5 | elapsed=01:50:41
+[PROGRESS] 2026-07-29T01:38:25Z | Completed 45/75; accuracy=59.17% | elapsed=01:53:13 | eta=01:15:29
+[PROGRESS] 2026-07-29T01:38:26Z | Condition 46/75: fog, severity=1 | elapsed=01:53:13
+[PROGRESS] 2026-07-29T01:40:57Z | Completed 46/75; accuracy=93.57% | elapsed=01:55:44 | eta=01:12:58
+[PROGRESS] 2026-07-29T01:40:57Z | Condition 47/75: fog, severity=2 | elapsed=01:55:44
+[PROGRESS] 2026-07-29T01:43:28Z | Completed 47/75; accuracy=92.11% | elapsed=01:58:16 | eta=01:10:27
+[PROGRESS] 2026-07-29T01:43:28Z | Condition 48/75: fog, severity=3 | elapsed=01:58:16
+[PROGRESS] 2026-07-29T01:45:59Z | Completed 48/75; accuracy=89.70% | elapsed=02:00:46 | eta=01:07:56
+[PROGRESS] 2026-07-29T01:45:59Z | Condition 49/75: fog, severity=4 | elapsed=02:00:46
+[PROGRESS] 2026-07-29T01:48:30Z | Completed 49/75; accuracy=85.82% | elapsed=02:03:17 | eta=01:05:25
+[PROGRESS] 2026-07-29T01:48:30Z | Condition 50/75: fog, severity=5 | elapsed=02:03:17
+[PROGRESS] 2026-07-29T01:51:01Z | Completed 50/75; accuracy=68.51% | elapsed=02:05:48 | eta=01:02:54
+[PROGRESS] 2026-07-29T01:51:01Z | Condition 51/75: brightness, severity=1 | elapsed=02:05:49
+[PROGRESS] 2026-07-29T01:53:32Z | Completed 51/75; accuracy=93.84% | elapsed=02:08:20 | eta=01:00:23
+[PROGRESS] 2026-07-29T01:53:32Z | Condition 52/75: brightness, severity=2 | elapsed=02:08:20
+[PROGRESS] 2026-07-29T01:56:03Z | Completed 52/75; accuracy=93.47% | elapsed=02:10:50 | eta=00:57:52
+[PROGRESS] 2026-07-29T01:56:03Z | Condition 53/75: brightness, severity=3 | elapsed=02:10:50
+[PROGRESS] 2026-07-29T01:58:34Z | Completed 53/75; accuracy=92.83% | elapsed=02:13:22 | eta=00:55:21
+[PROGRESS] 2026-07-29T01:58:34Z | Condition 54/75: brightness, severity=4 | elapsed=02:13:22
+[PROGRESS] 2026-07-29T02:01:05Z | Completed 54/75; accuracy=91.86% | elapsed=02:15:52 | eta=00:52:50
+[PROGRESS] 2026-07-29T02:01:05Z | Condition 55/75: brightness, severity=5 | elapsed=02:15:52
+[PROGRESS] 2026-07-29T02:03:35Z | Completed 55/75; accuracy=89.23% | elapsed=02:18:22 | eta=00:50:19
+[PROGRESS] 2026-07-29T02:03:35Z | Condition 56/75: contrast, severity=1 | elapsed=02:18:23
+[PROGRESS] 2026-07-29T02:06:06Z | Completed 56/75; accuracy=93.39% | elapsed=02:20:53 | eta=00:47:48
+[PROGRESS] 2026-07-29T02:06:06Z | Condition 57/75: contrast, severity=2 | elapsed=02:20:53
+[PROGRESS] 2026-07-29T02:08:37Z | Completed 57/75; accuracy=89.46% | elapsed=02:23:24 | eta=00:45:17
+[PROGRESS] 2026-07-29T02:08:37Z | Condition 58/75: contrast, severity=3 | elapsed=02:23:24
+[PROGRESS] 2026-07-29T02:11:07Z | Completed 58/75; accuracy=84.45% | elapsed=02:25:55 | eta=00:42:46
+[PROGRESS] 2026-07-29T02:11:07Z | Condition 59/75: contrast, severity=4 | elapsed=02:25:55
+[PROGRESS] 2026-07-29T02:13:38Z | Completed 59/75; accuracy=73.51% | elapsed=02:28:25 | eta=00:40:15
+[PROGRESS] 2026-07-29T02:13:38Z | Condition 60/75: contrast, severity=5 | elapsed=02:28:25
+[PROGRESS] 2026-07-29T02:16:08Z | Completed 60/75; accuracy=28.95% | elapsed=02:30:55 | eta=00:37:44
+[PROGRESS] 2026-07-29T02:16:08Z | Condition 61/75: elastic_transform, severity=1 | elapsed=02:30:55
+[PROGRESS] 2026-07-29T02:18:38Z | Completed 61/75; accuracy=88.41% | elapsed=02:33:25 | eta=00:35:13
+[PROGRESS] 2026-07-29T02:18:38Z | Condition 62/75: elastic_transform, severity=2 | elapsed=02:33:25
+[PROGRESS] 2026-07-29T02:21:09Z | Completed 62/75; accuracy=88.52% | elapsed=02:35:56 | eta=00:32:42
+[PROGRESS] 2026-07-29T02:21:09Z | Condition 63/75: elastic_transform, severity=3 | elapsed=02:35:56
+[PROGRESS] 2026-07-29T02:23:39Z | Completed 63/75; accuracy=83.76% | elapsed=02:38:26 | eta=00:30:11
+[PROGRESS] 2026-07-29T02:23:39Z | Condition 64/75: elastic_transform, severity=4 | elapsed=02:38:26
+[PROGRESS] 2026-07-29T02:26:09Z | Completed 64/75; accuracy=76.45% | elapsed=02:40:56 | eta=00:27:40
+[PROGRESS] 2026-07-29T02:26:09Z | Condition 65/75: elastic_transform, severity=5 | elapsed=02:40:56
+[PROGRESS] 2026-07-29T02:28:38Z | Completed 65/75; accuracy=73.39% | elapsed=02:43:26 | eta=00:25:09
+[PROGRESS] 2026-07-29T02:28:39Z | Condition 66/75: pixelate, severity=1 | elapsed=02:43:26
+[PROGRESS] 2026-07-29T02:31:08Z | Completed 66/75; accuracy=90.96% | elapsed=02:45:55 | eta=00:22:37
+[PROGRESS] 2026-07-29T02:31:08Z | Condition 67/75: pixelate, severity=2 | elapsed=02:45:55
+[PROGRESS] 2026-07-29T02:33:38Z | Completed 67/75; accuracy=85.31% | elapsed=02:48:25 | eta=00:20:07
+[PROGRESS] 2026-07-29T02:33:38Z | Condition 68/75: pixelate, severity=3 | elapsed=02:48:25
+[PROGRESS] 2026-07-29T02:36:09Z | Completed 68/75; accuracy=79.94% | elapsed=02:50:56 | eta=00:17:36
+[PROGRESS] 2026-07-29T02:36:09Z | Condition 69/75: pixelate, severity=4 | elapsed=02:50:56
+[PROGRESS] 2026-07-29T02:38:39Z | Completed 69/75; accuracy=60.97% | elapsed=02:53:26 | eta=00:15:05
+[PROGRESS] 2026-07-29T02:38:39Z | Condition 70/75: pixelate, severity=5 | elapsed=02:53:26
+[PROGRESS] 2026-07-29T02:41:08Z | Completed 70/75; accuracy=41.99% | elapsed=02:55:56 | eta=00:12:34
+[PROGRESS] 2026-07-29T02:41:09Z | Condition 71/75: jpeg_compression, severity=1 | elapsed=02:55:56
+[PROGRESS] 2026-07-29T02:43:39Z | Completed 71/75; accuracy=85.52% | elapsed=02:58:26 | eta=00:10:03
+[PROGRESS] 2026-07-29T02:43:39Z | Condition 72/75: jpeg_compression, severity=2 | elapsed=02:58:26
+[PROGRESS] 2026-07-29T02:46:10Z | Completed 72/75; accuracy=80.30% | elapsed=03:00:58 | eta=00:07:32
+[PROGRESS] 2026-07-29T02:46:10Z | Condition 73/75: jpeg_compression, severity=3 | elapsed=03:00:58
+[PROGRESS] 2026-07-29T02:48:42Z | Completed 73/75; accuracy=78.32% | elapsed=03:03:29 | eta=00:05:02
+[PROGRESS] 2026-07-29T02:48:42Z | Condition 74/75: jpeg_compression, severity=4 | elapsed=03:03:29
+[PROGRESS] 2026-07-29T02:51:12Z | Completed 74/75; accuracy=76.01% | elapsed=03:05:59 | eta=00:02:31
+[PROGRESS] 2026-07-29T02:51:12Z | Condition 75/75: jpeg_compression, severity=5 | elapsed=03:05:59
+[PROGRESS] 2026-07-29T02:53:43Z | Completed 75/75; accuracy=72.19% | elapsed=03:08:30 | eta=00:00:00
+{
+  "batch_size": 128,
+  "checkpoint_sha256": "d106883bd4fda76a9bd6c15ec7d5d398bc8a39d8337a9d7da11dcd817f405e36",
+  "cpu_threads": 1,
+  "dataset": {
+    "condition_count": 75,
+    "file_sha256": {
+      "brightness.npy": "3bb5990e41b0212b62bc0b4385f4f95d68ecb94da627eacba4552381228a17c3",
+      "contrast.npy": "cb5e3765f52a172a380ce8c8c3096b78669d2f01f4f6e958ee30729f680bb9fb",
+      "defocus_blur.npy": "6140f9954d10d5c606d598ca6e26d5d94a301894e94493035f03182f551b745e",
+      "elastic_transform.npy": "664626e48ed03abec17614d2c7a2cf827bc82778e2319573c73a49a99ca0b21a",
+      "fog.npy": "48f8f040b3aa25850119400ac2afacf72affdaaa3fcdd5daff425e876f996e50",
+      "frost.npy": "8be9ab8d9095b3fb3ebf4dd60f0a83651be115c3ac77c8adc5b3e0d3add5ad8c",
+      "gaussian_noise.npy": "269c7f8f1b896cb96cf194814171d0cfc6d73a1546cd718ba629756a906ecaf1",
+      "glass_blur.npy": "ec1586616c585b8f8742dc0003d9bebe07d822ed3c997b6215003d5afd66bdfa",
+      "impulse_noise.npy": "9eaebc6e508ebe05382c2631177ca1503f6f3aea68090c509d24506f86b1164f",
+      "jpeg_compression.npy": "60bd735b9bba513df1f22adc460942de6ef03f9e5870340464db1fc7e6331d51",
+      "labels.npy": "e6d972b1238665d8ef54aae5affe8e292dda1eb88a6840bf0f5988cdb649da7b",
+      "motion_blur.npy": "34baad18726fabefeb69b5cbedefda41ee7969dbed1562740ef9e1095d5dd954",
+      "pixelate.npy": "6657f75ac66c907ad8206248bc1f48bef0dac219a1617f4dfd1b15e46ccf5ac7",
+      "shot_noise.npy": "645936b5a5cf0b72151289c598b61b59429c917b346256e63d399a8c3a5ed078",
+      "snow.npy": "84d3fdf8b17e18b7657804321dc13dd260ea1151c9bc91e55e13656e5f5410f2",
+      "zoom_blur.npy": "a3af830b0759addce9ac555f938643f3dcf2b9fef9df7f4479750a568c62006f"
+    },
+    "image_evaluations": 750000,
+    "name": "CIFAR-10-C",
+    "severity_levels": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "source": "https://zenodo.org/records/2535967",
+    "standard_corruptions": [
+      "gaussian_noise",
+      "shot_noise",
+      "impulse_noise",
+      "defocus_blur",
+      "glass_blur",
+      "motion_blur",
+      "zoom_blur",
+      "snow",
+      "frost",
+      "fog",
+      "brightness",
+      "contrast",
+      "elastic_transform",
+      "pixelate",
+      "jpeg_compression"
+    ]
+  },
+  "experiment_id": "E0",
+  "failure_consistency": "prediction-level reference created",
+  "protocol_freeze_authorized": false,
+  "robustness": {
+    "aggregation": "unweighted mean across 15 corruptions and 5 severities",
+    "mean_corruption_accuracy": 0.7126946666666667,
+    "mean_corruption_error": 0.28730533333333336,
+    "mean_ece_15_bin": 0.18687581814195714,
+    "mean_macro_f1": 0.7112788182731726,
+    "mean_negative_log_likelihood": 1.381213944753011,
+    "normalized_alexnet_mce": null
+  },
+  "schema_version": "cifar10c_v1",
+  "seed": 42,
+  "variant": "FP32"
+}
+[PROGRESS] 2026-07-29T02:53:43Z | Evidence written to results/E0/cifar10c_v1 | elapsed=03:08:30
