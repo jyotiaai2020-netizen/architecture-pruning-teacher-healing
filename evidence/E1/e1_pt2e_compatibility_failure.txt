@@ -1,0 +1,6 @@
+2026-07-29T04:13:42+00:00
+torch: 2.13.0+cu130
+torchao: 0.17.0
+failure_stage: convert_pt2e/PortNodeMetaForQDQ
+missing_operator: torch.ops.aten.transpose.Dimname
+result: FAIL_DEPENDENCY_COMPATIBILITY

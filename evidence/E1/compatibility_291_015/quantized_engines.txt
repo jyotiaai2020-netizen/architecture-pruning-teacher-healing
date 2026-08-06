@@ -1,0 +1,2 @@
+torch.backends.quantized.engine=x86
+torch.backends.quantized.engine_available=cpu

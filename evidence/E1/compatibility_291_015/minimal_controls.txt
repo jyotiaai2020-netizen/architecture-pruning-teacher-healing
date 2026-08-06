@@ -1,0 +1,19 @@
+Skipping import of cpp extensions due to incompatible torch version 2.9.0+cpu for torchao version 0.15.0+cpu             Please see https://github.com/pytorch/ao/issues/2919 for more info
+
+MODEL: MINIMAL_LINEAR
+exported_node_count: 6
+annotated_node_count: 0
+quantization_node_count: 0
+output_shape: (1, 10)
+output_finite: True
+MINIMAL_LINEAR_PT2E_GATE: FAIL
+
+MODEL: MINIMAL_CONV
+exported_node_count: 7
+annotated_node_count: 0
+quantization_node_count: 0
+output_shape: (1, 8, 32, 32)
+output_finite: True
+MINIMAL_CONV_PT2E_GATE: FAIL
+
+MINIMAL_PT2E_DIAGNOSTIC: FAIL
