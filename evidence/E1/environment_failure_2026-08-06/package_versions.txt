@@ -1,0 +1,32 @@
+Name: torch
+Version: 2.11.0+cpu
+Summary: Tensors and Dynamic neural networks in Python with strong GPU acceleration
+Home-page: https://pytorch.org
+Author: 
+Author-email: PyTorch Team <packages@pytorch.org>
+License: BSD-3-Clause
+Location: /home/ubuntu/architecture-pruning-teacher-healing/.venv-e1-ptq/lib/python3.12/site-packages
+Requires: filelock, fsspec, jinja2, networkx, setuptools, sympy, typing-extensions
+Required-by: torchvision
+---
+Name: torchvision
+Version: 0.26.0+cpu
+Summary: image and video datasets and models for torch deep learning
+Home-page: https://github.com/pytorch/vision
+Author: PyTorch Core Team
+Author-email: soumith@pytorch.org
+License: BSD
+Location: /home/ubuntu/architecture-pruning-teacher-healing/.venv-e1-ptq/lib/python3.12/site-packages
+Requires: numpy, pillow, torch
+Required-by: 
+---
+Name: torchao
+Version: 0.17.0
+Summary: Package for applying ao techniques to GPU models
+Home-page: https://github.com/pytorch/ao
+Author: 
+Author-email: 
+License: 
+Location: /home/ubuntu/architecture-pruning-teacher-healing/.venv-e1-ptq/lib/python3.12/site-packages
+Requires: 
+Required-by: 

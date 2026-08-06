@@ -1,0 +1,3 @@
+torch.ao.quantization.quantize_pt2e: None
+torch.ao.quantization.quantizer: None
+torch.ao.quantization.quantizer.x86_inductor_quantizer: ERROR: ModuleNotFoundError("No module named 'torch.ao.quantization.quantizer'")

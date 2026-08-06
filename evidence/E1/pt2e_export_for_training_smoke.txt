@@ -1,0 +1,53 @@
+PT2E_X86_SMOKE_GATE: FAIL: X86InductorQuantizer annotated zero graph nodes; torch=2.11.0+cpu, torchao=0.17.0+cpu, torchvision=0.26.0+cpu
+STRICT_MODEL_GATE: PASS
+checkpoint_type: OrderedDict
+tensor_count: 122
+parameter_count: 11173962
+FP32_GATE: PASS
+fp32_shape: (1, 10)
+fp32_finite: True
+capture_api: torch.export.export
+EXPORT_GATE: PASS
+exported_node_count: 173
+source_fn_stack_node_count: 20
+torch_fn_node_count: 68
+nn_module_stack_node_count: 69
+exported_node: get_attr conv1_weight conv1.weight source_fn_stack= False torch_fn= None nn_module_stack= False
+exported_node: get_attr bn1_weight bn1.weight source_fn_stack= False torch_fn= None nn_module_stack= False
+exported_node: get_attr bn1_bias bn1.bias source_fn_stack= False torch_fn= None nn_module_stack= False
+exported_node: get_attr layer1_0_conv1_weight layer1.0.conv1.weight source_fn_stack= False torch_fn= None nn_module_stack= False
+exported_node: get_attr layer1_0_bn1_weight layer1.0.bn1.weight source_fn_stack= False torch_fn= None nn_module_stack= False
+exported_node: get_attr layer1_0_bn1_bias layer1.0.bn1.bias source_fn_stack= False torch_fn= None nn_module_stack= False
+exported_node: get_attr layer1_0_conv2_weight layer1.0.conv2.weight source_fn_stack= False torch_fn= None nn_module_stack= False
+exported_node: get_attr layer1_0_bn2_weight layer1.0.bn2.weight source_fn_stack= False torch_fn= None nn_module_stack= False
+exported_node: get_attr layer1_0_bn2_bias layer1.0.bn2.bias source_fn_stack= False torch_fn= None nn_module_stack= False
+exported_node: get_attr layer1_1_conv1_weight layer1.1.conv1.weight source_fn_stack= False torch_fn= None nn_module_stack= False
+exported_node: get_attr layer1_1_bn1_weight layer1.1.bn1.weight source_fn_stack= False torch_fn= None nn_module_stack= False
+exported_node: get_attr layer1_1_bn1_bias layer1.1.bn1.bias source_fn_stack= False torch_fn= None nn_module_stack= False
+exported_node: get_attr layer1_1_conv2_weight layer1.1.conv2.weight source_fn_stack= False torch_fn= None nn_module_stack= False
+exported_node: get_attr layer1_1_bn2_weight layer1.1.bn2.weight source_fn_stack= False torch_fn= None nn_module_stack= False
+exported_node: get_attr layer1_1_bn2_bias layer1.1.bn2.bias source_fn_stack= False torch_fn= None nn_module_stack= False
+exported_node: get_attr layer2_0_conv1_weight layer2.0.conv1.weight source_fn_stack= False torch_fn= None nn_module_stack= False
+exported_node: get_attr layer2_0_bn1_weight layer2.0.bn1.weight source_fn_stack= False torch_fn= None nn_module_stack= False
+exported_node: get_attr layer2_0_bn1_bias layer2.0.bn1.bias source_fn_stack= False torch_fn= None nn_module_stack= False
+exported_node: get_attr layer2_0_conv2_weight layer2.0.conv2.weight source_fn_stack= False torch_fn= None nn_module_stack= False
+exported_node: get_attr layer2_0_bn2_weight layer2.0.bn2.weight source_fn_stack= False torch_fn= None nn_module_stack= False
+exported_node: get_attr layer2_0_bn2_bias layer2.0.bn2.bias source_fn_stack= False torch_fn= None nn_module_stack= False
+exported_node: get_attr layer2_0_downsample_0_weight layer2.0.downsample.0.weight source_fn_stack= False torch_fn= None nn_module_stack= False
+exported_node: get_attr layer2_0_downsample_1_weight layer2.0.downsample.1.weight source_fn_stack= False torch_fn= None nn_module_stack= False
+exported_node: get_attr layer2_0_downsample_1_bias layer2.0.downsample.1.bias source_fn_stack= False torch_fn= None nn_module_stack= False
+exported_node: get_attr layer2_1_conv1_weight layer2.1.conv1.weight source_fn_stack= False torch_fn= None nn_module_stack= False
+exported_node: get_attr layer2_1_bn1_weight layer2.1.bn1.weight source_fn_stack= False torch_fn= None nn_module_stack= False
+exported_node: get_attr layer2_1_bn1_bias layer2.1.bn1.bias source_fn_stack= False torch_fn= None nn_module_stack= False
+exported_node: get_attr layer2_1_conv2_weight layer2.1.conv2.weight source_fn_stack= False torch_fn= None nn_module_stack= False
+exported_node: get_attr layer2_1_bn2_weight layer2.1.bn2.weight source_fn_stack= False torch_fn= None nn_module_stack= False
+exported_node: get_attr layer2_1_bn2_bias layer2.1.bn2.bias source_fn_stack= False torch_fn= None nn_module_stack= False
+PREPARE_GATE: PASS
+annotated_node_count: 0
+Traceback (most recent call last):
+  File "/home/ubuntu/architecture-pruning-teacher-healing/scripts/e1_pt2e_x86_smoke.py", line 300, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/home/ubuntu/architecture-pruning-teacher-healing/scripts/e1_pt2e_x86_smoke.py", line 243, in main
+    raise RuntimeError(
+RuntimeError: X86InductorQuantizer annotated zero graph nodes; torch=2.11.0+cpu, torchao=0.17.0+cpu, torchvision=0.26.0+cpu

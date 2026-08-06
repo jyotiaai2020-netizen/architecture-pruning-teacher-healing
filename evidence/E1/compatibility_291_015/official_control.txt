@@ -1,0 +1,4 @@
+Skipping import of cpp extensions due to incompatible torch version 2.9.0+cpu for torchao version 0.15.0+cpu             Please see https://github.com/pytorch/ao/issues/2919 for more info
+exported_node_count: 6
+prepared_annotations: 0
+converted_qdq_count: 0

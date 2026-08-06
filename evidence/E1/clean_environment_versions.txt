@@ -1,0 +1,4 @@
+python_executable: /home/ubuntu/architecture-pruning-teacher-healing/.venv-e1-ptq-clean/bin/python
+torch: 2.11.0+cpu
+torchvision: 0.26.0+cpu
+torchao: 0.17.0+cpu

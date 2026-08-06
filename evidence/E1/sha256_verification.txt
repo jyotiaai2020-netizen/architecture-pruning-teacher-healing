@@ -1,0 +1,6 @@
+evidence/E1/clean_environment_versions.txt: OK
+evidence/E1/pt2e_minimal_diagnostic.txt: OK
+evidence/E1/pt2e_minimal_diagnostic_exit_code.txt: OK
+evidence/E1/pt2e_official_x86_control.txt: OK
+evidence/E1/pt2e_official_x86_control_exit_code.txt: OK
+evidence/E1/experiment_status.txt: OK
