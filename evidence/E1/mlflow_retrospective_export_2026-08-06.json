@@ -1,0 +1,256 @@
+[
+  {
+    "artifacts": [
+      "E1_PT2E_FINAL_SHA256SUMS.txt",
+      "clean_environment_versions.txt",
+      "experiment_status.txt",
+      "pt2e_minimal_diagnostic.txt",
+      "pt2e_official_x86_control.txt"
+    ],
+    "end_time": 1786053418703,
+    "metrics": {
+      "experiment_outcome": 0.0
+    },
+    "name": "environment_summary",
+    "params": {
+      "annotated_node_count": "0",
+      "calibration_started": "false",
+      "capture_api": "torch.export.export",
+      "checkpoint_gate": "PASS",
+      "conversion_completed": "false",
+      "export_gate": "PASS",
+      "failure_stage": "ANNOTATION_GATE",
+      "fp32_gate": "PASS",
+      "prepare_gate": "PASS",
+      "python_version": "3.12.3",
+      "quantization_backend": "x86_inductor",
+      "quantization_method": "PT2E_static_INT8",
+      "quantization_node_count": "0",
+      "run_status": "BLOCKED",
+      "torch_version": "2.11.0+cpu",
+      "torchao_version": "0.17.0+cpu",
+      "torchvision_version": "0.26.0+cpu"
+    },
+    "run_id": "01ba0e5734934f3abfb4358e02f6b70c",
+    "start_time": 1786053418634,
+    "status": "FINISHED",
+    "tags": {
+      "experiment_outcome": "BLOCKED",
+      "live_monitoring": "false",
+      "mlflow.runName": "environment_summary",
+      "mlflow.source.name": "-",
+      "mlflow.source.type": "LOCAL",
+      "mlflow.user": "ubuntu",
+      "quantization_backend": "x86_inductor",
+      "quantization_method": "PT2E_static_INT8",
+      "result_validity": "diagnostic_failure_evidence",
+      "retrospective_record": "true",
+      "run_classification": "environment_summary",
+      "source": "evidence_files"
+    }
+  },
+  {
+    "artifacts": [
+      "E1_PT2E_FINAL_SHA256SUMS.txt",
+      "clean_environment_versions.txt",
+      "experiment_status.txt",
+      "pt2e_minimal_diagnostic.txt",
+      "pt2e_official_x86_control.txt",
+      "pt2e_official_x86_control_exit_code.txt"
+    ],
+    "end_time": 1786053418624,
+    "metrics": {
+      "experiment_outcome": 0.0
+    },
+    "name": "official_x86_control",
+    "params": {
+      "annotated_node_count": "0",
+      "calibration_started": "false",
+      "capture_api": "torch.export.export",
+      "checkpoint_gate": "PASS",
+      "conversion_completed": "false",
+      "export_gate": "PASS",
+      "failure_stage": "ANNOTATION_GATE",
+      "fp32_gate": "PASS",
+      "prepare_gate": "PASS",
+      "python_version": "3.12.3",
+      "quantization_backend": "x86_inductor",
+      "quantization_method": "PT2E_static_INT8",
+      "quantization_node_count": "0",
+      "run_status": "BLOCKED",
+      "torch_version": "2.11.0+cpu",
+      "torchao_version": "0.17.0+cpu",
+      "torchvision_version": "0.26.0+cpu"
+    },
+    "run_id": "6f7ee68f2734454aa0faa072aea25e93",
+    "start_time": 1786053418556,
+    "status": "FINISHED",
+    "tags": {
+      "experiment_outcome": "BLOCKED",
+      "live_monitoring": "false",
+      "mlflow.runName": "official_x86_control",
+      "mlflow.source.name": "-",
+      "mlflow.source.type": "LOCAL",
+      "mlflow.user": "ubuntu",
+      "quantization_backend": "x86_inductor",
+      "quantization_method": "PT2E_static_INT8",
+      "result_validity": "diagnostic_failure_evidence",
+      "retrospective_record": "true",
+      "run_classification": "official_x86_control",
+      "source": "evidence_files"
+    }
+  },
+  {
+    "artifacts": [
+      "E1_PT2E_FINAL_SHA256SUMS.txt",
+      "clean_environment_versions.txt",
+      "experiment_status.txt",
+      "pt2e_minimal_diagnostic.txt",
+      "pt2e_minimal_diagnostic_exit_code.txt",
+      "pt2e_official_x86_control.txt"
+    ],
+    "end_time": 1786053418546,
+    "metrics": {
+      "experiment_outcome": 0.0
+    },
+    "name": "minimal_conv_control",
+    "params": {
+      "annotated_node_count": "0",
+      "calibration_started": "false",
+      "capture_api": "torch.export.export",
+      "checkpoint_gate": "PASS",
+      "conversion_completed": "false",
+      "export_gate": "PASS",
+      "failure_stage": "ANNOTATION_GATE",
+      "fp32_gate": "PASS",
+      "prepare_gate": "PASS",
+      "python_version": "3.12.3",
+      "quantization_backend": "x86_inductor",
+      "quantization_method": "PT2E_static_INT8",
+      "quantization_node_count": "0",
+      "run_status": "BLOCKED",
+      "torch_version": "2.11.0+cpu",
+      "torchao_version": "0.17.0+cpu",
+      "torchvision_version": "0.26.0+cpu"
+    },
+    "run_id": "89059aa4a52d4cd48e44dff92f8e7697",
+    "start_time": 1786053418478,
+    "status": "FINISHED",
+    "tags": {
+      "experiment_outcome": "BLOCKED",
+      "live_monitoring": "false",
+      "mlflow.runName": "minimal_conv_control",
+      "mlflow.source.name": "-",
+      "mlflow.source.type": "LOCAL",
+      "mlflow.user": "ubuntu",
+      "quantization_backend": "x86_inductor",
+      "quantization_method": "PT2E_static_INT8",
+      "result_validity": "diagnostic_failure_evidence",
+      "retrospective_record": "true",
+      "run_classification": "minimal_conv_control",
+      "source": "evidence_files"
+    }
+  },
+  {
+    "artifacts": [
+      "E1_PT2E_FINAL_SHA256SUMS.txt",
+      "clean_environment_versions.txt",
+      "experiment_status.txt",
+      "pt2e_minimal_diagnostic.txt",
+      "pt2e_minimal_diagnostic_exit_code.txt",
+      "pt2e_official_x86_control.txt"
+    ],
+    "end_time": 1786053418468,
+    "metrics": {
+      "experiment_outcome": 0.0
+    },
+    "name": "minimal_linear_control",
+    "params": {
+      "annotated_node_count": "0",
+      "calibration_started": "false",
+      "capture_api": "torch.export.export",
+      "checkpoint_gate": "PASS",
+      "conversion_completed": "false",
+      "export_gate": "PASS",
+      "failure_stage": "ANNOTATION_GATE",
+      "fp32_gate": "PASS",
+      "prepare_gate": "PASS",
+      "python_version": "3.12.3",
+      "quantization_backend": "x86_inductor",
+      "quantization_method": "PT2E_static_INT8",
+      "quantization_node_count": "0",
+      "run_status": "BLOCKED",
+      "torch_version": "2.11.0+cpu",
+      "torchao_version": "0.17.0+cpu",
+      "torchvision_version": "0.26.0+cpu"
+    },
+    "run_id": "eedc8dbe5b8d4e12a22f3a39439fae6a",
+    "start_time": 1786053418400,
+    "status": "FINISHED",
+    "tags": {
+      "experiment_outcome": "BLOCKED",
+      "live_monitoring": "false",
+      "mlflow.runName": "minimal_linear_control",
+      "mlflow.source.name": "-",
+      "mlflow.source.type": "LOCAL",
+      "mlflow.user": "ubuntu",
+      "quantization_backend": "x86_inductor",
+      "quantization_method": "PT2E_static_INT8",
+      "result_validity": "diagnostic_failure_evidence",
+      "retrospective_record": "true",
+      "run_classification": "minimal_linear_control",
+      "source": "evidence_files"
+    }
+  },
+  {
+    "artifacts": [
+      "E1_PT2E_FINAL_SHA256SUMS.txt",
+      "clean_environment_versions.txt",
+      "experiment_status.txt",
+      "pt2e_export_for_training_smoke.txt",
+      "pt2e_minimal_diagnostic.txt",
+      "pt2e_official_x86_control.txt"
+    ],
+    "end_time": 1786053418388,
+    "metrics": {
+      "experiment_outcome": 0.0
+    },
+    "name": "resnet18_pt2e_smoke",
+    "params": {
+      "annotated_node_count": "0",
+      "calibration_started": "false",
+      "capture_api": "torch.export.export",
+      "checkpoint_gate": "PASS",
+      "conversion_completed": "false",
+      "export_gate": "PASS",
+      "failure_stage": "ANNOTATION_GATE",
+      "fp32_gate": "PASS",
+      "prepare_gate": "PASS",
+      "python_version": "3.12.3",
+      "quantization_backend": "x86_inductor",
+      "quantization_method": "PT2E_static_INT8",
+      "quantization_node_count": "0",
+      "run_status": "BLOCKED",
+      "torch_version": "2.11.0+cpu",
+      "torchao_version": "0.17.0+cpu",
+      "torchvision_version": "0.26.0+cpu"
+    },
+    "run_id": "b5ae2c88be3a4a119b5e9ee5cfedde4c",
+    "start_time": 1786053418289,
+    "status": "FINISHED",
+    "tags": {
+      "experiment_outcome": "BLOCKED",
+      "live_monitoring": "false",
+      "mlflow.runName": "resnet18_pt2e_smoke",
+      "mlflow.source.name": "-",
+      "mlflow.source.type": "LOCAL",
+      "mlflow.user": "ubuntu",
+      "quantization_backend": "x86_inductor",
+      "quantization_method": "PT2E_static_INT8",
+      "result_validity": "diagnostic_failure_evidence",
+      "retrospective_record": "true",
+      "run_classification": "resnet18_pt2e_smoke",
+      "source": "evidence_files"
+    }
+  }
+]

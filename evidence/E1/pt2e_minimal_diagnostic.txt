@@ -1,0 +1,18 @@
+
+MODEL: MINIMAL_LINEAR
+exported_node_count: 6
+annotated_node_count: 0
+quantization_node_count: 0
+output_shape: (1, 10)
+output_finite: True
+MINIMAL_LINEAR_PT2E_GATE: FAIL
+
+MODEL: MINIMAL_CONV
+exported_node_count: 7
+annotated_node_count: 0
+quantization_node_count: 0
+output_shape: (1, 8, 32, 32)
+output_finite: True
+MINIMAL_CONV_PT2E_GATE: FAIL
+
+MINIMAL_PT2E_DIAGNOSTIC: FAIL

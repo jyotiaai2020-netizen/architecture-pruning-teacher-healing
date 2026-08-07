@@ -1,0 +1,25 @@
+E1 PT2E x86 static INT8: BLOCKED
+Checkpoint integrity: PASS
+FP32 inference: PASS
+ResNet PT2E annotation: FAIL
+Minimal Linear PT2E annotation/conversion: FAIL
+Minimal Conv PT2E annotation/conversion: FAIL
+Frozen calibration: NOT STARTED
+INT8 evaluation: NOT STARTED
+Cause classification: tested version-matrix/PT2E-path incompatibility
+
+Formal closure note:
+The E1 PT2E diagnostic runs were registered retrospectively in MLflow using preserved terminal outputs, environment records, exit codes, status documentation, and verified SHA-256 manifests. The records are explicitly tagged as retrospective and do not represent prospective runtime monitoring. No unavailable performance, accuracy, memory, latency, or calibration measurements were reconstructed.
+
+MLflow registration status: successfully completed
+Registration type: retrospective evidence record
+Tracking backend: local SQLite
+Experimental outcome: BLOCKED
+Failure stage: ANNOTATION_GATE
+Live monitoring: false
+Frozen calibration and INT8 evaluation: not started
+Evidence integrity: preserved through SHA-256 checksums
+
+Formal evidence references:
+evidence/E1/E1_PT2E_FINAL_SHA256SUMS.txt
+evidence/E1/experiment_status.txt

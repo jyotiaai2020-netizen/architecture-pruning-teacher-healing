@@ -1,9 +1,11 @@
 # Python
 __pycache__/
 *.py[cod]
+*.pyc
 *.egg-info/
 .pytest_cache/
 .ipynb_checkpoints/
+pip-cache/
 
 # Environments
 venv/
@@ -31,12 +33,13 @@ results/*.pth
 results/*.ckpt
 results/*.bin
 results/*.safetensors
-*.onnx
 *.gguf
 
-# MLflow
+# MLflow and databases
 mlruns/
-mlflow.db
+*.db
+*.db-shm
+*.db-wal
 mlartifacts/
 
 # Logs and temporary outputs

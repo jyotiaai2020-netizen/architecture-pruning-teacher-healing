@@ -1,0 +1,12 @@
+Filesystem                     Type      Size  Used Avail Use% Mounted on
+/dev/root                      ext4       29G   28G 1010M  97% /
+tmpfs                          tmpfs     7.8G     0  7.8G   0% /dev
+efivarfs                       efivarfs  128K  4.0K  120K   4% /sys/firmware/efi/efivars
+tmpfs                          tmpfs     3.1G  1.0M  3.1G   1% /run
+tmpfs                          tmpfs     5.0M     0  5.0M   0% /run/lock
+tmpfs                          tmpfs     1.6G   12K  1.6G   1% /run/user/1000
+/dev/nvme0n1p16                ext4      881M  112M  708M  14% /boot
+/dev/nvme0n1p15                vfat      105M  6.2M   99M   6% /boot/efi
+/dev/mapper/vg.01-lv_ephemeral ext4      115G   40K  109G   1% /opt/dlami/nvme
+tmpfs                          tmpfs     7.8G  4.0K  7.8G   1% /home/ubuntu
+tmpfs                          tmpfs     7.8G     0  7.8G   0% /etc/ssh/ssh_config.d
