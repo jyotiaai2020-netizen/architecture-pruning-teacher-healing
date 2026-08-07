@@ -58,3 +58,9 @@ figures/generated/
 
 .venv*/
 *.bak
+
+# Local datasets
+/data/
+
+# Temporary Torch/Python module exports
+/tmp*/
