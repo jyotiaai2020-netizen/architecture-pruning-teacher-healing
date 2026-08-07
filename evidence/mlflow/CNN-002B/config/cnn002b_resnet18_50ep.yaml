@@ -1,0 +1,26 @@
+experiment:
+  id: CNN-002B
+  name: resnet18_cifar10_student_baseline_50ep
+  seed: 42
+
+model:
+  name: resnet18
+  role: official_student_baseline
+  num_classes: 10
+
+dataset:
+  name: CIFAR10
+  root: ./datasets
+  download: true
+
+training:
+  epochs: 50
+  batch_size: 128
+  learning_rate: 0.1
+  optimizer: SGD
+  num_workers: 2
+  mixed_precision: true
+
+tracking:
+  experiment_name: CNN_Student_Baseline
+  tracking_uri: http://127.0.0.1:5050

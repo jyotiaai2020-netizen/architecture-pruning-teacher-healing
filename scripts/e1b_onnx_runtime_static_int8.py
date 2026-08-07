@@ -57,7 +57,7 @@ CLASS_NAMES = [
 ]
 SEED = 42
 CALIBRATION_COUNT = 512
-EVALUATION_COUNT = 1000
+EVALUATION_COUNT = 10_000
 BATCH_SIZE = 1
 WARMUP_ITERATIONS = 50
 MEASUREMENT_ITERATIONS = 500
@@ -112,16 +112,17 @@ def get_git_commit() -> str:
         return "unknown"
 
 
-def create_manifests(data_root: Path, evidence_root: Path, calibration_count: int, evaluation_count: int) -> tuple[Path, Path]:
+def create_manifests(data_root: Path, evidence_root: Path, calibration_count: int, evaluation_count: int) -> tuple[Path, Path, list[int], list[int]]:
     transform = transforms.Compose([transforms.ToTensor(), transforms.Normalize(CIFAR10_MEAN, CIFAR10_STD)])
-    dataset = torchvision.datasets.CIFAR10(root=str(data_root), train=False, download=False, transform=transform)
-    if len(dataset) < calibration_count + evaluation_count:
-        raise RuntimeError(f"Expected at least {calibration_count + evaluation_count} samples, found {len(dataset)}")
+    train_dataset = torchvision.datasets.CIFAR10(root=str(data_root), train=True, download=False, transform=transform)
+    eval_dataset = torchvision.datasets.CIFAR10(root=str(data_root), train=False, download=False, transform=transform)
+    if len(train_dataset) < calibration_count:
+        raise RuntimeError(f"Expected at least {calibration_count} training samples, found {len(train_dataset)}")
+    if len(eval_dataset) != 10_000:
+        raise RuntimeError(f"Expected 10,000 CIFAR-10 test images, found {len(eval_dataset)}")
 
     calibration_indices = list(range(calibration_count))
-    evaluation_indices = list(range(calibration_count, calibration_count + evaluation_count))
-    if len(set(calibration_indices).intersection(evaluation_indices)) != 0:
-        raise RuntimeError("Calibration and evaluation manifests overlap")
+    evaluation_indices = list(range(len(eval_dataset)))
 
     calibration_path = evidence_root / "calibration" / "calibration_manifest.csv"
     evaluation_path = evidence_root / "evaluation" / "evaluation_manifest.csv"
@@ -130,19 +131,25 @@ def create_manifests(data_root: Path, evidence_root: Path, calibration_count: in
 
     with calibration_path.open("w", newline="", encoding="utf-8") as handle:
         writer = csv.writer(handle)
-        writer.writerow(["index", "label", "source"])
+        writer.writerow(["index", "label", "dataset_split", "source"])
         for index in calibration_indices:
-            sample, label = dataset[index]
-            writer.writerow([index, int(label), "cifar10_test"])
+            sample, label = train_dataset[index]
+            writer.writerow([index, int(label), "train", "cifar10"])
 
     with evaluation_path.open("w", newline="", encoding="utf-8") as handle:
         writer = csv.writer(handle)
-        writer.writerow(["index", "label", "source"])
+        writer.writerow(["index", "label", "dataset_split", "source"])
         for index in evaluation_indices:
-            sample, label = dataset[index]
-            writer.writerow([index, int(label), "cifar10_test"])
+            sample, label = eval_dataset[index]
+            writer.writerow([index, int(label), "test", "cifar10"])
 
-    return calibration_path, evaluation_path
+    assert len(calibration_indices) == calibration_count
+    assert len(evaluation_indices) == 10_000
+    assert len(set(evaluation_indices)) == 10_000
+    assert min(evaluation_indices) == 0
+    assert max(evaluation_indices) == 9999
+
+    return calibration_path, evaluation_path, calibration_indices, evaluation_indices
 
 
 def load_checkpoint(checkpoint_path: Path) -> tuple[nn.Module, str, int]:
@@ -221,6 +228,62 @@ def calculate_macro_f1(confusion: np.ndarray) -> float:
     return float(np.mean(f1))
 
 
+def wilson_confidence_interval(correct: int, total: int, confidence: float = 0.95) -> tuple[float, float]:
+    if total <= 0:
+        return 0.0, 0.0
+    z = 1.959963984540054
+    p = correct / total
+    denominator = 1 + (z**2) / total
+    center = (p + (z**2) / (2 * total)) / denominator
+    margin = (z / denominator) * np.sqrt((p * (1 - p) / total) + (z**2) / (4 * total**2))
+    lower = max(0.0, center - margin)
+    upper = min(1.0, center + margin)
+    return float(lower), float(upper)
+
+
+def summarize_per_class_metrics(labels: list[int], predictions: list[int], class_names: list[str]) -> dict[str, dict[str, float]]:
+    summaries: dict[str, dict[str, float]] = {}
+    for class_index, class_name in enumerate(class_names):
+        support = sum(1 for label in labels if label == class_index)
+        true_positives = sum(1 for label, pred in zip(labels, predictions) if label == class_index and pred == class_index)
+        false_positives = sum(1 for label, pred in zip(labels, predictions) if label != class_index and pred == class_index)
+        false_negatives = sum(1 for label, pred in zip(labels, predictions) if label == class_index and pred != class_index)
+        precision = true_positives / max(1, true_positives + false_positives)
+        recall = true_positives / max(1, true_positives + false_negatives)
+        accuracy = true_positives / max(1, support)
+        summaries[class_name] = {
+            "support": float(support),
+            "accuracy": float(accuracy),
+            "precision": float(precision),
+            "recall": float(recall),
+            "f1": float(2 * precision * recall / max(1e-9, precision + recall)),
+        }
+    return summaries
+
+
+def calculate_classification_report(labels: list[int], predictions: list[int], class_names: list[str]) -> dict[str, Any]:
+    metrics: dict[str, Any] = {}
+    for class_index, class_name in enumerate(class_names):
+        support = sum(1 for label in labels if label == class_index)
+        true_positives = sum(1 for label, pred in zip(labels, predictions) if label == class_index and pred == class_index)
+        false_positives = sum(1 for label, pred in zip(labels, predictions) if label != class_index and pred == class_index)
+        false_negatives = sum(1 for label, pred in zip(labels, predictions) if label == class_index and pred != class_index)
+        precision = true_positives / max(1, true_positives + false_positives)
+        recall = true_positives / max(1, true_positives + false_negatives)
+        accuracy = true_positives / max(1, support)
+        lower, upper = wilson_confidence_interval(true_positives, support)
+        metrics[class_name] = {
+            "support": int(support),
+            "accuracy": float(accuracy),
+            "precision": float(precision),
+            "recall": float(recall),
+            "f1": float(2 * precision * recall / max(1e-9, precision + recall)),
+            "ci_low": float(lower),
+            "ci_high": float(upper),
+        }
+    return metrics
+
+
 def export_onnx(model: nn.Module, output_path: Path) -> None:
     dummy_input = torch.randn(1, 3, 32, 32, dtype=torch.float32)
     torch.onnx.export(
@@ -238,7 +301,7 @@ def export_onnx(model: nn.Module, output_path: Path) -> None:
 
 def create_calibration_reader(evidence_root: Path, data_root: Path, calibration_count: int) -> tuple[CalibrationDataReader, list[np.ndarray]]:
     transform = transforms.Compose([transforms.ToTensor(), transforms.Normalize(CIFAR10_MEAN, CIFAR10_STD)])
-    dataset = torchvision.datasets.CIFAR10(root=str(data_root), train=False, download=False, transform=transform)
+    dataset = torchvision.datasets.CIFAR10(root=str(data_root), train=True, download=False, transform=transform)
     tensors: list[np.ndarray] = []
     for index in range(min(calibration_count, len(dataset))):
         image, _ = dataset[index]
@@ -383,7 +446,7 @@ def main() -> int:
     os.environ["NUMEXPR_NUM_THREADS"] = "1"
 
     print("Creating manifests")
-    calibration_path, evaluation_path = create_manifests(data_root, evidence_root, args.calibration_count, args.evaluation_count)
+    calibration_path, evaluation_path, calibration_indices, evaluation_indices = create_manifests(data_root, evidence_root, args.calibration_count, args.evaluation_count)
 
     print("Loading checkpoint")
     model, checkpoint_sha256, parameter_count = load_checkpoint(args.checkpoint)
@@ -391,12 +454,8 @@ def main() -> int:
 
     print("Running baseline FP32 evaluation")
     dataloader = build_dataloader(data_root, batch_size=BATCH_SIZE, shuffle=False)
-    # Limit the evaluation loop to the manifest-backed subset to keep reproducibility controlled.
     eval_dataset = torchvision.datasets.CIFAR10(root=str(data_root), train=False, download=False, transform=transforms.Compose([transforms.ToTensor(), transforms.Normalize(CIFAR10_MEAN, CIFAR10_STD)]))
-    with evaluation_path.open("r", encoding="utf-8") as handle:
-        rows = list(csv.DictReader(handle))
-    eval_indices = [int(row["index"]) for row in rows[: args.evaluation_count]]
-    subset = torch.utils.data.Subset(eval_dataset, eval_indices)
+    subset = torch.utils.data.Subset(eval_dataset, evaluation_indices)
     eval_loader = DataLoader(subset, batch_size=BATCH_SIZE, shuffle=False, num_workers=0)
 
     # Run a short PyTorch FP32 evaluation for the controlled subset.
@@ -419,6 +478,9 @@ def main() -> int:
     print("Prepared calibration reader")
     calibration_reader, calibration_tensors = create_calibration_reader(evidence_root, data_root, args.calibration_count)
     assert calibration_reader.count == 0
+    assert len(calibration_indices) == args.calibration_count
+    assert len(evaluation_indices) == args.evaluation_count
+    assert len(evaluation_indices) == 10_000
 
     print("Quantizing to static INT8 QDQ")
     int8_model_path = evidence_root / "models" / "resnet18_static_int8_qdq.onnx"
@@ -441,17 +503,29 @@ def main() -> int:
     int8_latency = benchmark_latency(int8_model_path)
 
     print("Writing evaluation summaries")
+    for name, payload in [("pytorch_fp32", torch_eval), ("onnx_fp32", fp32_eval), ("onnx_int8", int8_eval)]:
+        correct = payload["correct"]
+        total = payload["sample_count"]
+        lower, upper = wilson_confidence_interval(correct, total)
+        payload["confidence_interval"] = {"lower": lower, "upper": upper}
     summary = {
         "checkpoint_sha256": checkpoint_sha256,
         "parameter_count": parameter_count,
         "calibration_count": len(calibration_tensors),
+        "evaluation_count": int8_eval["sample_count"],
         "calibration_manifest_sha256": hashlib.sha256((calibration_path.read_text(encoding="utf-8")).encode("utf-8")).hexdigest(),
         "evaluation_manifest_sha256": hashlib.sha256((evaluation_path.read_text(encoding="utf-8")).encode("utf-8")).hexdigest(),
         "git_commit": get_git_commit(),
         "metrics": {
             "pytorch_fp32_accuracy": float(torch_eval["accuracy"]),
+            "pytorch_fp32_accuracy_ci_low": float(torch_eval["confidence_interval"]["lower"]),
+            "pytorch_fp32_accuracy_ci_high": float(torch_eval["confidence_interval"]["upper"]),
             "onnx_fp32_accuracy": float(fp32_eval["accuracy"]),
+            "onnx_fp32_accuracy_ci_low": float(fp32_eval["confidence_interval"]["lower"]),
+            "onnx_fp32_accuracy_ci_high": float(fp32_eval["confidence_interval"]["upper"]),
             "onnx_int8_accuracy": float(int8_eval["accuracy"]),
+            "onnx_int8_accuracy_ci_low": float(int8_eval["confidence_interval"]["lower"]),
+            "onnx_int8_accuracy_ci_high": float(int8_eval["confidence_interval"]["upper"]),
             "capability_retention": float(int8_eval["accuracy"] / max(fp32_eval["accuracy"], 1e-9)),
             "absolute_accuracy_loss": float(fp32_eval["accuracy"] - int8_eval["accuracy"]),
             "macro_f1": float(calculate_macro_f1(int8_eval["confusion"])),
@@ -464,6 +538,16 @@ def main() -> int:
             "latency_speedup": float(fp32_latency["median_ms"] / max(int8_latency["median_ms"], 1e-9)),
             "fp32_p95_latency_ms": float(fp32_latency["p95_ms"]),
             "int8_p95_latency_ms": float(int8_latency["p95_ms"]),
+        },
+        "per_class_metrics": {
+            "pytorch_fp32": summarize_per_class_metrics(torch_eval["labels"], torch_eval["predictions"], CLASS_NAMES),
+            "onnx_fp32": summarize_per_class_metrics(fp32_eval["labels"], fp32_eval["predictions"], CLASS_NAMES),
+            "onnx_int8": summarize_per_class_metrics(int8_eval["labels"], int8_eval["predictions"], CLASS_NAMES),
+        },
+        "classification_report": {
+            "pytorch_fp32": calculate_classification_report(torch_eval["labels"], torch_eval["predictions"], CLASS_NAMES),
+            "onnx_fp32": calculate_classification_report(fp32_eval["labels"], fp32_eval["predictions"], CLASS_NAMES),
+            "onnx_int8": calculate_classification_report(int8_eval["labels"], int8_eval["predictions"], CLASS_NAMES),
         },
         "confusions": {
             "pytorch_fp32": torch_eval["confusion"].tolist(),
