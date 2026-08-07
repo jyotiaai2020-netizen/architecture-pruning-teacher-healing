@@ -1,0 +1,10 @@
+/tmp/pt2e-recovery-venv/lib/python3.12/site-packages/torchao/quantization/pt2e/quantizer/x86_inductor_quantizer.py:1325: UserWarning: The input of maxpool2d is not quantized, skip annotate maxpool2d with config QuantizationConfig(input_activation=QuantizationSpec(dtype=torch.uint8, observer_or_fake_quant_ctr=functools.partial(<class 'torchao.quantization.pt2e.observer.HistogramObserver'>, eps=0.000244140625){}, quant_min=0, quant_max=255, qscheme=torch.per_tensor_affine, ch_axis=None, is_dynamic=False), output_activation=QuantizationSpec(dtype=torch.uint8, observer_or_fake_quant_ctr=functools.partial(<class 'torchao.quantization.pt2e.observer.HistogramObserver'>, eps=0.000244140625){}, quant_min=0, quant_max=255, qscheme=torch.per_tensor_affine, ch_axis=None, is_dynamic=False), weight=QuantizationSpec(dtype=torch.int8, observer_or_fake_quant_ctr=functools.partial(<class 'torchao.quantization.pt2e.observer.PerChannelMinMaxObserver'>, eps=0.000244140625){}, quant_min=-128, quant_max=127, qscheme=torch.per_channel_symmetric, ch_axis=0, is_dynamic=False), bias=None, is_qat=False).
+  warnings.warn(
+torch 2.9.1+cpu
+torchvision 0.24.1+cpu
+torchao 0.15.0+cpu
+exported_nodes 194
+prepared_nodes 94
+prepared_annotations 0
+converted_qdq_count 0
+converted_nodes 94
