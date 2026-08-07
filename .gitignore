@@ -64,3 +64,9 @@ figures/generated/
 
 # Temporary Torch/Python module exports
 /tmp*/
+
+# Local governance package archive
+/E0_Governance_Package_*.tar
+
+# Local governance package archive
+/E0_Governance_Package_*.tar
