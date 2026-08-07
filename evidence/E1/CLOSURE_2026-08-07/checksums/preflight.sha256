@@ -1,0 +1,5 @@
+fe7220122919cb479389c0faac48fddec227204edc7ae6b25908953b3f23c41c  evidence/E1/ONNX_INT8/models/resnet18_fp32.onnx
+226d0ab9284412ef7f3600739a1f36718f682b6b0193d78a4b4dca7b3856fb69  evidence/E1/ONNX_INT8/models/resnet18_fp32.onnx.data
+a00cbac0f6ef14eeba121537840286347f6911e03adabf39694aad63fe24c495  evidence/E1/ONNX_INT8/models/resnet18_static_int8_qdq.onnx
+cca22e04f57c448cf03a978ffb813f0eccd9c4924fa928c6294a90a2b5524585  evidence/E1/CLOSURE_2026-08-07/preflight/pip-freeze.txt
+f9a29aa59105c06cfc6514c6f37b3f7d41da187082f966bf7e0d3000fae1c864  evidence/E1/CLOSURE_2026-08-07/preflight/onnx-environment.txt
