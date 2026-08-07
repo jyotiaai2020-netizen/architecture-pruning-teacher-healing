@@ -1,0 +1,5 @@
+python: /home/ubuntu/architecture-pruning-teacher-healing/.venv/bin/python
+onnx: 1.17.0
+onnxruntime: 1.20.1
+providers: ['AzureExecutionProvider', 'CPUExecutionProvider']
+selected_provider: CPUExecutionProvider
