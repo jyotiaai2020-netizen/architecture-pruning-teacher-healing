@@ -1,0 +1,18 @@
+{
+  "experiment_code": "E1-A2",
+  "purpose": "PT2E approved-matrix compatibility control",
+  "model": "unmodified_torchvision_resnet18",
+  "python_version": "3.12.3",
+  "pytorch_version": "2.9.1+cpu",
+  "torchvision_version": "0.24.1+cpu",
+  "torchao_version": "0.15.0",
+  "exported_node_count": 194,
+  "prepared_annotation_count": 0,
+  "quantize_linear_count": 0,
+  "dequantize_linear_count": 0,
+  "valid_int8_model_created": false,
+  "calibration_completed": false,
+  "int8_evaluation_completed": false,
+  "outcome": "UNSUPPORTED_IN_TESTED_ENVIRONMENT",
+  "scientific_int8_result": false
+}
