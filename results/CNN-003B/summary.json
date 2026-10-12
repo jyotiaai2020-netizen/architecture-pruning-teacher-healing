@@ -1,0 +1,13 @@
+{
+  "experiment_id": "CNN-003B",
+  "model": "resnet50",
+  "device": "cuda",
+  "best_val_accuracy": 92.38,
+  "best_epoch": 48,
+  "test_accuracy": 92.11,
+  "selection_metric": "val_accuracy",
+  "split_manifest": "metadata/splits/cifar10_train45k_val5k_seed42.json",
+  "parameters": 23520842,
+  "model_size_mb": 90.02937984466553,
+  "wall_clock_seconds": 2662.684860789999
+}

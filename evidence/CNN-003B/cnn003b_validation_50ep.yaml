@@ -1,0 +1,25 @@
+experiment:
+  id: CNN-003B
+  name: resnet50_cifar10_teacher_50ep_seed42
+  seed: 42
+model:
+  name: resnet50
+  role: teacher_baseline
+  num_classes: 10
+dataset:
+  name: CIFAR10
+  root: ./datasets
+  download: true
+  split_seed: 42
+training:
+  epochs: 50
+  batch_size: 128
+  learning_rate: 0.1
+  optimizer: sgd
+  num_workers: 2
+  mixed_precision: true
+  lr_milestones: [25, 40]
+  lr_gamma: 0.1
+tracking:
+  experiment_name: CNN_Teacher_Baseline
+  tracking_uri: http://127.0.0.1:5050
