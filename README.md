@@ -51,12 +51,54 @@ The program follows a staged comparative design:
 |---|---|---|---|
 | CNN-001 | TinyCNN | Framework and pipeline validation | Completed |
 | CNN-002 / CNN-002B | ResNet-18 student baseline | Establish reproducible clean-capability baseline | Completed |
-| CNN-003 | ResNet-50 teacher | Establish higher-capability teacher baseline | Planned / not frozen |
+| CNN-003 | ResNet-50 teacher (earlier protocol) | Historical teacher experiment; distinguish from corrected validation protocol | Historical / not frozen |
+| **CNN-003B** | **ResNet-50 teacher, validation-corrected** | **45k/5k split, validation-based selection, held-out test reporting** | **50 epochs completed; single-run baseline established** |
 | CNN-004 | Simplified or structurally pruned student | Measure architecture-reduction effects | Planned |
 | CNN-005 | Simplified student + knowledge distillation | Isolate distillation benefit | Planned |
 | CNN-006 | Distilled student + quantization | Measure combined compression effects | Planned |
 | CNN-007 | Full Teacher-Healing intervention | Test recovery of capability after compression | Planned |
 | E1 | ResNet-18 FP32 vs static INT8 QDQ | Validate quantization, evidence controls, and EDF readiness | Closure in progress |
+
+## CNN-003B completed teacher baseline — October 12, 2026
+
+The validation-corrected CIFAR-10 ResNet-50 teacher run completed **50 epochs** on an NVIDIA Tesla T4 GPU. The official training data was deterministically divided into **45,000 training** and **5,000 validation** examples using split seed **42**, with **zero overlap**. Validation accuracy was used for best-checkpoint selection; final test accuracy was reported separately.
+
+| Metric | Observed result |
+|---|---:|
+| Best validation accuracy | **92.38%** |
+| Best checkpoint epoch | **48** |
+| Final reported test accuracy | **92.11%** |
+| Validation–test gap | 0.27 percentage points |
+| Model parameters | 23,520,842 |
+| Reported model size | 90.03 MiB |
+| Total experiment time | 2,662.68 seconds (44 min 23 s) |
+| Model | CIFAR-adapted ResNet-50 |
+| Selection metric | `val_accuracy` |
+| MLflow experiment | `CNN_Teacher_Baseline` |
+| MLflow run ID | `edc07a6c32b0485db5db7e53cff30082` |
+
+The EC2 run produced two checkpoint files, approximately 91 MB each:
+
+```text
+4d3ca6a7b1f0396e4e56024341144d487aa173ace0c7e5d981eaf9879a4ae31a  checkpoints/CNN-003B/best_model.pt
+e63a3de3dee4c2e27c224b0da52883389b10749e799356ef380480ec5b403d9b  checkpoints/CNN-003B/final_model.pt
+```
+
+### Reproducibility and artifacts
+
+- Runner: `scripts/run_cnn_experiment_cnn003b_validation.py`
+- Configuration: `configs/cnn/cnn003b_validation_50ep.yaml`
+- Split manifest: `metadata/splits/cifar10_train45k_val5k_seed42.json`
+- Results: `results/CNN-003B/summary.json`
+- Evidence: `evidence/CNN-003B/`
+- Training log: `cnn003b_teacher_50ep.log` (also copied into evidence on EC2)
+- Checkpoint fingerprints: `evidence/CNN-003B/checkpoint_sha256.txt`
+
+These paths describe artifacts observed or prepared on EC2. Their availability in a particular GitHub branch depends on whether that branch's research commit has been pushed. The large checkpoint binaries are **not claimed to be hosted on GitHub**.
+
+**Research interpretation:** CNN-003B is a completed **single-run teacher baseline**, not a statistically replicated or formally frozen study. Further independent seeds, audit of the evaluation protocol, and comparison-ready deployment measurements remain outstanding. The 92.11% held-out test result is a reference, not a hyperparameter-tuning target. CNN-004 structured pruning and later teacher-guided recovery are planned; no pruning improvement is claimed yet.
+
+This CNN-003B experiment is distinct from **E1**, the ResNet-18 FP32 versus INT8 QDQ quantization validation. E1's existing closure status and findings remain unchanged.
 
 ## E1 current results
 
@@ -141,4 +183,4 @@ Performance observations collected across different EC2 restarts are not combine
 
 ## Current project status
 
-**E1 closure is in progress.** The model artifacts, environment record, external-data boundary, deployable-size result, and remote checkpoint are preserved. The next work session should complete paired capability and quality analysis, CIFAR-10-C robustness, and controlled performance/memory measurement before EDF eligibility and formal freeze are decided.
+**CNN-003B completed its 50-epoch teacher run (92.38% best validation accuracy; 92.11% reported test accuracy), with replication and formal freeze still pending. E1 closure is independently in progress.** The E1 model artifacts, environment record, external-data boundary, deployable-size result, and remote checkpoint are preserved. The next work session should complete paired capability and quality analysis, CIFAR-10-C robustness, and controlled performance/memory measurement before EDF eligibility and formal freeze are decided.
