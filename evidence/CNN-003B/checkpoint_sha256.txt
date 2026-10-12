@@ -1,0 +1,2 @@
+4d3ca6a7b1f0396e4e56024341144d487aa173ace0c7e5d981eaf9879a4ae31a  checkpoints/CNN-003B/best_model.pt
+e63a3de3dee4c2e27c224b0da52883389b10749e799356ef380480ec5b403d9b  checkpoints/CNN-003B/final_model.pt
