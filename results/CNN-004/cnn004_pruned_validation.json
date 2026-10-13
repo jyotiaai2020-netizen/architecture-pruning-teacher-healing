@@ -1,0 +1,18 @@
+{
+  "experiment_id": "CNN-004",
+  "stage": "pruned_before_recovery",
+  "teacher_sha256": "4d3ca6a7b1f0396e4e56024341144d487aa173ace0c7e5d981eaf9879a4ae31a",
+  "split_manifest_sha256": "1c10c8261334ccc8cc3035b6fb3cfc7083b6aee45d3913971eaff11044e1d4bf",
+  "pruning_ratio": 0.2,
+  "torch_pruning_version": "1.6.0",
+  "parameters": 20218770,
+  "macs": 1134338752.0,
+  "validation_samples": 5000,
+  "teacher_best_validation_accuracy_percent": 92.38,
+  "pruned_validation_accuracy_percent": 92.18,
+  "validation_accuracy_change_pp": -0.19999999999998863,
+  "validation_elapsed_seconds": 4.020330769000793,
+  "validation_ms_per_sample": 0.8040661538001587,
+  "weights_path": "results/CNN-004/cnn004_pruned_before_recovery_state_dict.pt",
+  "weights_sha256": "595b761259c88e4f656a1a3102ec457d41c57551db301c39111fe4157fb89057"
+}
