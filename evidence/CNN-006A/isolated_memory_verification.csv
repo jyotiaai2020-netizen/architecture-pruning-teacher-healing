@@ -1,0 +1,5 @@
+model,precision,batch_size,parameters,loaded_model_mib,peak_allocated_mib,median_latency_ms
+CNN-005A,FP32,32,20218770,78.18,190.68,24.903
+CNN-005B,FP32,32,20218770,78.18,190.68,24.996
+CNN-005A,AMP_FP16,32,20218770,78.18,142.93,14.483
+CNN-005B,AMP_FP16,32,20218770,78.18,142.93,14.486
