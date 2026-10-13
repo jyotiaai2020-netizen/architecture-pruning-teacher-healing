@@ -1,0 +1,183 @@
+{
+  "experiment": "CNN-006A",
+  "gpu": "Tesla T4",
+  "torch": "2.12.1+cu130",
+  "cuda": "13.0",
+  "split_sha256": "1c10c8261334ccc8cc3035b6fb3cfc7083b6aee45d3913971eaff11044e1d4bf",
+  "checkpoint_sha256": {
+    "teacher": "4d3ca6a7b1f0396e4e56024341144d487aa173ace0c7e5d981eaf9879a4ae31a",
+    "pruned": "595b761259c88e4f656a1a3102ec457d41c57551db301c39111fe4157fb89057",
+    "A": "b974d77fb6cf6d7b2235ea0ec928a95a4e8085e930357a2b34392bc5a57b7639",
+    "B": "62eb8ec8a2826848067236fdd85aae10b06a24b3a2af9dbb929aeb16208f065e"
+  },
+  "results": {
+    "teacher": {
+      "FP32": {
+        "correct": 4619,
+        "total": 5000,
+        "accuracy_pct": 92.38,
+        "timings": [
+          {
+            "batch_size": 1,
+            "warmup": 30,
+            "iterations": 100,
+            "median_latency_ms_per_batch": 5.097976005345117,
+            "p95_latency_ms_per_batch": 5.270446003123652,
+            "throughput_images_per_sec": 195.17979945063112,
+            "peak_allocated_gpu_mib": 105.2236328125,
+            "scope": "Model-only synchronized GPU forward pass; synthetic input, no data transfer"
+          },
+          {
+            "batch_size": 32,
+            "warmup": 30,
+            "iterations": 100,
+            "median_latency_ms_per_batch": 26.240102499286877,
+            "p95_latency_ms_per_batch": 26.573172995995265,
+            "throughput_images_per_sec": 1220.3518413905927,
+            "peak_allocated_gpu_mib": 202.4609375,
+            "scope": "Model-only synchronized GPU forward pass; synthetic input, no data transfer"
+          }
+        ]
+      },
+      "AMP_FP16": {
+        "correct": 4619,
+        "total": 5000,
+        "accuracy_pct": 92.38,
+        "timings": [
+          {
+            "batch_size": 1,
+            "warmup": 30,
+            "iterations": 100,
+            "median_latency_ms_per_batch": 6.255034502828494,
+            "p95_latency_ms_per_batch": 6.369811999320518,
+            "throughput_images_per_sec": 159.45072337929076,
+            "peak_allocated_gpu_mib": 108.2548828125,
+            "scope": "Model-only synchronized GPU forward pass; synthetic input, no data transfer"
+          },
+          {
+            "batch_size": 32,
+            "warmup": 30,
+            "iterations": 100,
+            "median_latency_ms_per_batch": 13.209856500907335,
+            "p95_latency_ms_per_batch": 13.32679099868983,
+            "throughput_images_per_sec": 2422.424756034462,
+            "peak_allocated_gpu_mib": 154.71142578125,
+            "scope": "Model-only synchronized GPU forward pass; synthetic input, no data transfer"
+          }
+        ]
+      }
+    },
+    "A": {
+      "FP32": {
+        "correct": 4632,
+        "total": 5000,
+        "accuracy_pct": 92.64,
+        "timings": [
+          {
+            "batch_size": 1,
+            "warmup": 30,
+            "iterations": 100,
+            "median_latency_ms_per_batch": 5.08020150300581,
+            "p95_latency_ms_per_batch": 5.170518001250457,
+            "throughput_images_per_sec": 196.42716509441192,
+            "peak_allocated_gpu_mib": 92.8955078125,
+            "scope": "Model-only synchronized GPU forward pass; synthetic input, no data transfer"
+          },
+          {
+            "batch_size": 32,
+            "warmup": 30,
+            "iterations": 100,
+            "median_latency_ms_per_batch": 25.056628499442013,
+            "p95_latency_ms_per_batch": 25.37400700384751,
+            "throughput_images_per_sec": 1277.5336002827462,
+            "peak_allocated_gpu_mib": 190.78125,
+            "scope": "Model-only synchronized GPU forward pass; synthetic input, no data transfer"
+          }
+        ]
+      },
+      "AMP_FP16": {
+        "correct": 4632,
+        "total": 5000,
+        "accuracy_pct": 92.64,
+        "timings": [
+          {
+            "batch_size": 1,
+            "warmup": 30,
+            "iterations": 100,
+            "median_latency_ms_per_batch": 6.660436501988443,
+            "p95_latency_ms_per_batch": 6.871438003145158,
+            "throughput_images_per_sec": 149.3676687912303,
+            "peak_allocated_gpu_mib": 94.65625,
+            "scope": "Model-only synchronized GPU forward pass; synthetic input, no data transfer"
+          },
+          {
+            "batch_size": 32,
+            "warmup": 30,
+            "iterations": 100,
+            "median_latency_ms_per_batch": 14.581041999917943,
+            "p95_latency_ms_per_batch": 14.683114000945352,
+            "throughput_images_per_sec": 2193.7341152265008,
+            "peak_allocated_gpu_mib": 143.03173828125,
+            "scope": "Model-only synchronized GPU forward pass; synthetic input, no data transfer"
+          }
+        ]
+      }
+    },
+    "B": {
+      "FP32": {
+        "correct": 4644,
+        "total": 5000,
+        "accuracy_pct": 92.88,
+        "timings": [
+          {
+            "batch_size": 1,
+            "warmup": 30,
+            "iterations": 100,
+            "median_latency_ms_per_batch": 5.059443501522765,
+            "p95_latency_ms_per_batch": 5.1737889953074045,
+            "throughput_images_per_sec": 197.15760638048064,
+            "peak_allocated_gpu_mib": 170.814453125,
+            "scope": "Model-only synchronized GPU forward pass; synthetic input, no data transfer"
+          },
+          {
+            "batch_size": 32,
+            "warmup": 30,
+            "iterations": 100,
+            "median_latency_ms_per_batch": 25.090606999583542,
+            "p95_latency_ms_per_batch": 25.655781995737925,
+            "throughput_images_per_sec": 1272.730528248614,
+            "peak_allocated_gpu_mib": 269.021484375,
+            "scope": "Model-only synchronized GPU forward pass; synthetic input, no data transfer"
+          }
+        ]
+      },
+      "AMP_FP16": {
+        "correct": 4642,
+        "total": 5000,
+        "accuracy_pct": 92.84,
+        "timings": [
+          {
+            "batch_size": 1,
+            "warmup": 30,
+            "iterations": 100,
+            "median_latency_ms_per_batch": 6.572486498043872,
+            "p95_latency_ms_per_batch": 6.802011004765518,
+            "throughput_images_per_sec": 151.21422762395747,
+            "peak_allocated_gpu_mib": 172.896484375,
+            "scope": "Model-only synchronized GPU forward pass; synthetic input, no data transfer"
+          },
+          {
+            "batch_size": 32,
+            "warmup": 30,
+            "iterations": 100,
+            "median_latency_ms_per_batch": 14.600843998778146,
+            "p95_latency_ms_per_batch": 14.726266999787185,
+            "throughput_images_per_sec": 2189.888759520217,
+            "peak_allocated_gpu_mib": 221.27197265625,
+            "scope": "Model-only synchronized GPU forward pass; synthetic input, no data transfer"
+          }
+        ]
+      }
+    }
+  }
+}
