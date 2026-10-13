@@ -6,24 +6,22 @@ A reproducible research framework for evaluating whether architecture-aware simp
 
 Evaluate model capability alongside parameter count, multiply-accumulate operations (MACs), checkpoint size, inference latency, memory, energy (where measured), and deployment constraints. The intended decision criterion is **Capability Efficiency = Capability Score / EDF Score**, subject to minimum capability requirements. A complete EDF evaluation has **not** yet been performed.
 
-## Experiment status (12 October 2026)
+## Experiment status (updated 12 October 2026)
 
 | Experiment | Purpose | Status |
-| --- | --- | --- |
-| CNN-001 | TinyCNN framework validation | Historical framework experiment |
-| CNN-002 | ResNet-18 student baseline | Historical baseline |
-| CNN-003 | Initial ResNet-50 teacher | Historical; not the validation-corrected teacher used for CNN-004 |
-| CNN-003B | CIFAR-10 ResNet-50 teacher with train/validation separation | **Frozen baseline** |
-| CNN-004 | Structured channel pruning, before recovery | **Frozen, checkpoint archived, clean reload passed** |
-| CNN-005A | Supervised fine-tuning of CNN-004 | Planned; not trained |
-| CNN-005B | Teacher-guided knowledge-distillation recovery of CNN-004 | Planned; not trained |
-| CNN-006 | Quantization and compression ablations | Planned; protocol to be finalized |
-| CNN-007 | Combined compression and edge/deployment evaluation | Planned; protocol to be finalized |
+|---|---|---|
+| CNN-001 | TinyCNN pipeline validation | Completed historical experiment |
+| CNN-002 / CNN-002B | ResNet-18 student baselines | Completed historical experiments |
+| CNN-003 | Earlier ResNet-50 teacher protocol | Historical; superseded for pruning comparisons |
+| **CNN-003B** | Validation-corrected CIFAR-10 ResNet-50 teacher | **Frozen single-run teacher baseline** |
+| **CNN-004** | Structured channel pruning before recovery | **Frozen validated candidate; checkpoint and validation JSON archived; clean reload passed** |
+| CNN-005A | Supervised recovery from CNN-004 | Planned |
+| CNN-005B | Teacher-guided recovery from the same CNN-004 weights | Planned |
+| CNN-006 | Quantization/compression ablations | Planned |
+| CNN-007 | Combined method and edge deployment evaluation | Planned |
+| E1 | ResNet-18 FP32 vs static INT8 QDQ | Separate study; closure validation in progress |
 
-CNN-005A/B and CNN-006/007 are working experiment labels for the next controlled studies, not completed results. Earlier CNN-005/006/007 labels described conceptual phases; this table clarifies the current operational plan.
-This repository contains a controlled, evidence-first research program investigating whether neural-network compression—especially **static INT8 quantization**, architecture simplification, knowledge distillation, and **Teacher Healing**—can reduce deployment cost while preserving model capability.
-
-The work is motivated by a practical question: **Can advanced AI models become smaller and easier to deploy on resource-constrained systems without losing the accuracy, quality, robustness, and decision value that make them useful?**
+CNN-005A/B and CNN-006/007 are the current working labels. A frozen single-run baseline is **not** equivalent to statistical replication or publication-level validation.
 
 ## Research purpose
 
@@ -66,20 +64,6 @@ The program follows a staged comparative design:
 | Statistical validation | Use McNemar analysis and paired bootstrap confidence intervals with predeclared gates and seeds. |
 | Governance and freeze | Generate immutable evidence, hashes, conformance records, and a formal decision before freezing an experiment. |
 
-## Experiment roadmap
-
-| Experiment | Model or intervention | Purpose | Status |
-|---|---|---|---|
-| CNN-001 | TinyCNN | Framework and pipeline validation | Completed |
-| CNN-002 / CNN-002B | ResNet-18 student baseline | Establish reproducible clean-capability baseline | Completed |
-| CNN-003 | ResNet-50 teacher (earlier protocol) | Historical teacher experiment; distinguish from corrected validation protocol | Historical / not frozen |
-| **CNN-003B** | **ResNet-50 teacher, validation-corrected** | **45k/5k split, validation-based selection, held-out test reporting** | **50 epochs completed; single-run baseline established** |
-| CNN-004 | Simplified or structurally pruned student | Measure architecture-reduction effects | Planned |
-| CNN-005 | Simplified student + knowledge distillation | Isolate distillation benefit | Planned |
-| CNN-006 | Distilled student + quantization | Measure combined compression effects | Planned |
-| CNN-007 | Full Teacher-Healing intervention | Test recovery of capability after compression | Planned |
-| E1 | ResNet-18 FP32 vs static INT8 QDQ | Validate quantization, evidence controls, and EDF readiness | Closure in progress |
-
 ## CNN-003B completed teacher baseline — October 12, 2026
 
 The validation-corrected CIFAR-10 ResNet-50 teacher run completed **50 epochs** on an NVIDIA Tesla T4 GPU. The official training data was deterministically divided into **45,000 training** and **5,000 validation** examples using split seed **42**, with **zero overlap**. Validation accuracy was used for best-checkpoint selection; final test accuracy was reported separately.
@@ -117,7 +101,7 @@ e63a3de3dee4c2e27c224b0da52883389b10749e799356ef380480ec5b403d9b  checkpoints/CN
 
 These paths describe artifacts observed or prepared on EC2. Their availability in a particular GitHub branch depends on whether that branch's research commit has been pushed. The large checkpoint binaries are **not claimed to be hosted on GitHub**.
 
-**Research interpretation:** CNN-003B is a completed **single-run teacher baseline**, not a statistically replicated or formally frozen study. Further independent seeds, audit of the evaluation protocol, and comparison-ready deployment measurements remain outstanding. The 92.11% held-out test result is a reference, not a hyperparameter-tuning target. CNN-004 structured pruning and later teacher-guided recovery are planned; no pruning improvement is claimed yet.
+**Research interpretation:** CNN-003B is a **frozen single-run teacher baseline**, not a statistically replicated or publication-validated result. Further independent seeds and controlled deployment measurements remain outstanding. The 92.11% held-out test result is a historical reference, not a hyperparameter-tuning target. CNN-004 is now a separately frozen pre-recovery pruned candidate; CNN-005 recovery remains planned.
 
 This CNN-003B experiment is distinct from **E1**, the ResNet-18 FP32 versus INT8 QDQ quantization validation. E1's existing closure status and findings remain unchanged.
 
@@ -221,7 +205,7 @@ source /opt/pytorch/bin/activate
 python -m scripts.verify_cnn004_reload
 ```
 
-The recorded validation JSON (`results/CNN-004/cnn004_pruned_validation.json`) is referenced in the freeze record but **is not yet committed on this branch**. The split manifest and teacher checkpoint must also be available locally for the verifier to run. A GitHub commit and the successful EC2 reload do not independently establish a fresh remote download-and-hash check.
+The recorded validation JSON [`results/CNN-004/cnn004_pruned_validation.json`](results/CNN-004/cnn004_pruned_validation.json) was archived in commit [`ef86694`](https://github.com/jyotiaai2020-netizen/architecture-pruning-teacher-healing/commit/ef866947c8480161d6fee1a156746c65a8d56f71). The split manifest and teacher checkpoint must also be available locally for the verifier to run. A GitHub commit and the successful EC2 reload do not independently establish a fresh remote download-and-hash check.
 
 ## Next controlled experiments
 
@@ -249,4 +233,4 @@ The recorded validation JSON (`results/CNN-004/cnn004_pruned_validation.json`) i
 
 ## Current project status
 
-**CNN-003B completed its 50-epoch teacher run (92.38% best validation accuracy; 92.11% reported test accuracy), with replication and formal freeze still pending. E1 closure is independently in progress.** The E1 model artifacts, environment record, external-data boundary, deployable-size result, and remote checkpoint are preserved. The next work session should complete paired capability and quality analysis, CIFAR-10-C robustness, and controlled performance/memory measurement before EDF eligibility and formal freeze are decided.
+CNN-003B and CNN-004 are frozen for the purposes documented above. CNN-005A/B recovery has not yet been run. E1 remains an independent FP32-versus-INT8 study in closure validation; its pending paired capability, calibration, robustness, controlled performance/memory, and governance steps are unchanged. No complete EDF score or causal Teacher-Healing benefit has been established.
