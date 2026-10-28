@@ -1,0 +1,8 @@
+# CNN-006B: keep large binary artifacts outside ordinary Git tracking.
+# Preserve these files locally until externally archived and verified.
+
+*.onnx
+*.plan
+*.npz
+
+# JSON validation, calibration, latency, and energy evidence remains trackable.

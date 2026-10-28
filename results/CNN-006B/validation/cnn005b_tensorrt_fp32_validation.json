@@ -1,0 +1,19 @@
+{
+  "experiment": "CNN-006B",
+  "model": "CNN-005B",
+  "backend": "TensorRT",
+  "precision": "FP32",
+  "batch_size": 1,
+  "validation_samples": 5000,
+  "engine_sha256": "57be29e147d43ef66400f60e70b15a219cc080ce47cc1a92fe414f6b13ed3eb6",
+  "reference_sha256": "97015744b2f1750918e3a922f43f2a6fdd99637d3e9f17953661131acd2f3377",
+  "pytorch_correct": 4644,
+  "pytorch_accuracy": 0.9288,
+  "tensorrt_correct": 4644,
+  "tensorrt_accuracy": 0.9288,
+  "prediction_agreement_count": 5000,
+  "prediction_agreement_rate": 1.0,
+  "max_absolute_logit_difference": 8.344650268554688e-06,
+  "mean_absolute_logit_difference": 7.848232053220272e-07,
+  "disagreement_indices": []
+}
