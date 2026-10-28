@@ -1,0 +1,88 @@
+{
+  "experiment": "CNN-006B",
+  "measurement": "NVML cumulative GPU energy",
+  "gpu": "Tesla T4",
+  "timestamp_utc": "2026-10-28T15:18:57.022246+00:00",
+  "batch_size": 1,
+  "rounds": 3,
+  "iterations_per_round": 5000,
+  "scope": "GPU-resident TensorRT inference; excludes host transfers",
+  "results": {
+    "FP32": [
+      {
+        "iterations": 5000,
+        "warmup_iterations": 100,
+        "duration_seconds": 9.621887633999904,
+        "idle_power_watts": 32.32370469166739,
+        "gross_energy_joules": 669.667,
+        "gross_energy_mj_per_inference": 133.9334,
+        "idle_adjusted_energy_joules_estimate": 358.6519455421809,
+        "idle_adjusted_mj_per_inference_estimate": 71.73038910843619,
+        "average_power_watts": 69.5982977013434,
+        "wall_time_ms_per_inference": 1.9243775267999808
+      },
+      {
+        "iterations": 5000,
+        "warmup_iterations": 100,
+        "duration_seconds": 9.65582087599978,
+        "idle_power_watts": 31.821819241017394,
+        "gross_energy_joules": 672.22,
+        "gross_energy_mj_per_inference": 134.444,
+        "idle_adjusted_energy_joules_estimate": 364.9542134602928,
+        "idle_adjusted_mj_per_inference_estimate": 72.99084269205855,
+        "average_power_watts": 69.6181100118427,
+        "wall_time_ms_per_inference": 1.931164175199956
+      },
+      {
+        "iterations": 5000,
+        "warmup_iterations": 100,
+        "duration_seconds": 9.678712551999524,
+        "idle_power_watts": 33.185376565743795,
+        "gross_energy_joules": 676.725,
+        "gross_energy_mj_per_inference": 135.345,
+        "idle_adjusted_energy_joules_estimate": 355.5332792903047,
+        "idle_adjusted_mj_per_inference_estimate": 71.10665585806093,
+        "average_power_watts": 69.91890671039667,
+        "wall_time_ms_per_inference": 1.9357425103999049
+      }
+    ],
+    "INT8_v3": [
+      {
+        "iterations": 5000,
+        "warmup_iterations": 100,
+        "duration_seconds": 3.2532089570004246,
+        "idle_power_watts": 32.105727178178675,
+        "gross_energy_joules": 166.237,
+        "gross_energy_mj_per_inference": 33.2474,
+        "idle_adjusted_energy_joules_estimate": 61.79036077293716,
+        "idle_adjusted_mj_per_inference_estimate": 12.358072154587433,
+        "average_power_watts": 51.099392076332066,
+        "wall_time_ms_per_inference": 0.6506417914000849
+      },
+      {
+        "iterations": 5000,
+        "warmup_iterations": 100,
+        "duration_seconds": 3.2573680879995663,
+        "idle_power_watts": 32.223103585490335,
+        "gross_energy_joules": 170.423,
+        "gross_energy_mj_per_inference": 34.0846,
+        "idle_adjusted_energy_joules_estimate": 65.46049068431938,
+        "idle_adjusted_mj_per_inference_estimate": 13.092098136863877,
+        "average_power_watts": 52.319233011416024,
+        "wall_time_ms_per_inference": 0.6514736175999133
+      },
+      {
+        "iterations": 5000,
+        "warmup_iterations": 100,
+        "duration_seconds": 3.258281820000775,
+        "idle_power_watts": 33.096793716663555,
+        "gross_energy_joules": 173.596,
+        "gross_energy_mj_per_inference": 34.7192,
+        "idle_adjusted_energy_joules_estimate": 65.75731873267927,
+        "idle_adjusted_mj_per_inference_estimate": 13.151463746535853,
+        "average_power_watts": 53.2783870733314,
+        "wall_time_ms_per_inference": 0.651656364000155
+      }
+    ]
+  }
+}
