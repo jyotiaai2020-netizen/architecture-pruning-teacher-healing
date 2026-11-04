@@ -2,10 +2,13 @@
 
 A reproducible research framework for evaluating whether architecture-aware simplification, structured pruning, knowledge distillation, quantization, and teacher-guided recovery can produce compact neural networks with acceptable capability and a lower Effective Deployment Footprint (EDF).
 
+> **Research navigation (updated 28 October 2026):** [Research index](RESEARCH_INDEX.md) · [Research questions RQ1–RQ7](RESEARCH_QUESTIONS.md) · [Experiment register](EXPERIMENT_REGISTER.md) · [Cross-experiment decision log](RESEARCH_DECISION_LOG.md) · [RQ7 standalone article draft](paper/RQ7_INT8_T4_ARTICLE_DRAFT.md). The historical sections below contain time-stamped snapshots and may not reflect later experiments. For CNN-006B use the [current results](results/CNN-006B/README.md) and [protocol](evidence/CNN-006B/EXPERIMENT_PROTOCOL.md). CNN-006B is evidence-preserved, **not formally frozen**; RQ6 teacher-healing causality and complete EDF remain open.
+
 ## Research objective
 
 Evaluate model capability alongside parameter count, multiply-accumulate operations (MACs), checkpoint size, inference latency, memory, energy (where measured), and deployment constraints. The intended decision criterion is **Capability Efficiency = Capability Score / EDF Score**, subject to minimum capability requirements. A complete EDF evaluation has **not** yet been performed.
 
+## Historical experiment status (snapshot: 12 October 2026; see current register above)
 ## Experiment status (updated 13 October 2026)
 
 | Experiment | Purpose | Status |
@@ -38,7 +41,7 @@ Capability Efficiency = Capability Score / EDF Score
 
 EDF and Capability Efficiency are calculated only when every required dimension has valid evidence and the normalization policy has been declared in advance. Missing energy data is not silently replaced with an estimated value.
 
-## Research questions
+## Research questions (historical RQ1–RQ6 snapshot; see current RQ1–RQ7 register)
 
 | ID | Research question | Current interpretation |
 |---|---|---|
@@ -252,6 +255,6 @@ The recovered pruned architecture retains the CNN-004 reductions of **14.04% in 
 - MLflow
 - CIFAR-10 and CIFAR-10-C
 
-## Current project status
+## Historical project status (as recorded before CNN-006B; see current register)
 
 CNN-003B and CNN-004 are frozen for the purposes documented above. CNN-005A/B recovery has completed, passed strict reload and independent validation, and is research-evidence-frozen with verified same-instance checkpoint backups. CNN-006 quantization remains planned. E1 remains an independent FP32-versus-INT8 study in closure validation; its pending paired capability, calibration, robustness, controlled performance/memory, and governance steps are unchanged. No complete EDF score or causal Teacher-Healing benefit has been established.
