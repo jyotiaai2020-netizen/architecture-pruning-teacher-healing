@@ -1,0 +1,71 @@
+{
+  "analysis_kind": "archived-data descriptive analysis; not new measurement",
+  "n": 5000,
+  "paired_correctness": {
+    "both_correct": 4607,
+    "fp32_only": 37,
+    "int8_only": 24,
+    "both_wrong": 332
+  },
+  "accuracy_fp32": 0.9288,
+  "accuracy_int8": 0.9262,
+  "int8_minus_fp32_accuracy_difference": -0.0026,
+  "paired_wald_95pct_CI": [
+    -0.005660713294343017,
+    0.0004607132943430176
+  ],
+  "paired_multinomial_bootstrap_percentile_95pct_CI": [
+    -0.0056,
+    0.0004
+  ],
+  "bootstrap_repetitions": 200000,
+  "bootstrap_seed": 20261104,
+  "mcnemar_exact_two_sided_p": 0.12373144253809215,
+  "latency": {
+    "FP32": {
+      "round_medians_ms": [
+        1.92329603433609,
+        1.9230719804763794,
+        1.9254559874534607
+      ],
+      "median_of_round_medians_ms": 1.92329603433609,
+      "mean_ms": 1.9239413340886433,
+      "sd_ms": 0.0013165033781487592
+    },
+    "INT8_v3": {
+      "round_medians_ms": [
+        0.6634719967842102,
+        0.6616640090942383,
+        0.6651840209960938
+      ],
+      "median_of_round_medians_ms": 0.6634719967842102,
+      "mean_ms": 0.6634400089581808,
+      "sd_ms": 0.001760223952530361
+    }
+  },
+  "energy": {
+    "FP32": {
+      "round_gross_mj_per_inference": [
+        133.9334,
+        134.444,
+        135.345
+      ],
+      "median_mj": 134.444,
+      "mean_mj": 134.57413333333332,
+      "sd_mj": 0.7147409693961373
+    },
+    "INT8_v3": {
+      "round_gross_mj_per_inference": [
+        33.2474,
+        34.0846,
+        34.7192
+      ],
+      "median_mj": 34.0846,
+      "mean_mj": 34.017066666666665,
+      "sd_mj": 0.738220409724179
+    }
+  },
+  "energy_measurement_input": "one repeated zero-filled GPU-resident image",
+  "energy_scope": "gross NVML GPU board counter including idle contribution",
+  "limitations": "3 rounds are within-session repeats; no CI for hardware population"
+}
