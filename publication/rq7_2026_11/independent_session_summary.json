@@ -1,0 +1,218 @@
+{
+  "status": "COMPLETED independent-session comparison ONLY if session independence was externally verified",
+  "number_of_session_files": 3,
+  "unit_of_inference": "independent GPU sessions",
+  "session_provenance_warning": "Different directory IDs are not proof of actual device restart/session independence; verify host logs.",
+  "sessions": [
+    {
+      "session": "20261105T162036Z_session1",
+      "fp32_gross_mJ_per_image_session_median": 137.6698,
+      "int8_gross_mJ_per_image_session_median": 36.0168,
+      "percent_energy_reduction": 73.83827099334785,
+      "fp32_accuracy": 0.9288,
+      "int8_accuracy": 0.9262
+    },
+    {
+      "session": "20261105T162036Z_session2",
+      "fp32_gross_mJ_per_image_session_median": 137.8658,
+      "int8_gross_mJ_per_image_session_median": 35.57,
+      "percent_energy_reduction": 74.1995476760734,
+      "fp32_accuracy": 0.9288,
+      "int8_accuracy": 0.9262
+    },
+    {
+      "session": "20261105T162036Z_session3",
+      "fp32_gross_mJ_per_image_session_median": 138.2706,
+      "int8_gross_mJ_per_image_session_median": 35.174,
+      "percent_energy_reduction": 74.56147583072612,
+      "fp32_accuracy": 0.9288,
+      "int8_accuracy": 0.9262
+    }
+  ],
+  "mean_reduction_pct": 74.19976483338246,
+  "session_sd_reduction_pct": 0.36160246759363707,
+  "min_pct": 73.83827099334785,
+  "max_pct": 74.56147583072612,
+  "class_level": [
+    {
+      "class_index": 0,
+      "n": 473,
+      "sessions": [
+        {
+          "fp32_correct": 446,
+          "int8_correct": 449
+        },
+        {
+          "fp32_correct": 446,
+          "int8_correct": 449
+        },
+        {
+          "fp32_correct": 446,
+          "int8_correct": 449
+        }
+      ]
+    },
+    {
+      "class_index": 1,
+      "n": 542,
+      "sessions": [
+        {
+          "fp32_correct": 529,
+          "int8_correct": 526
+        },
+        {
+          "fp32_correct": 529,
+          "int8_correct": 526
+        },
+        {
+          "fp32_correct": 529,
+          "int8_correct": 526
+        }
+      ]
+    },
+    {
+      "class_index": 2,
+      "n": 535,
+      "sessions": [
+        {
+          "fp32_correct": 473,
+          "int8_correct": 473
+        },
+        {
+          "fp32_correct": 473,
+          "int8_correct": 473
+        },
+        {
+          "fp32_correct": 473,
+          "int8_correct": 473
+        }
+      ]
+    },
+    {
+      "class_index": 3,
+      "n": 482,
+      "sessions": [
+        {
+          "fp32_correct": 404,
+          "int8_correct": 396
+        },
+        {
+          "fp32_correct": 404,
+          "int8_correct": 396
+        },
+        {
+          "fp32_correct": 404,
+          "int8_correct": 396
+        }
+      ]
+    },
+    {
+      "class_index": 4,
+      "n": 523,
+      "sessions": [
+        {
+          "fp32_correct": 477,
+          "int8_correct": 476
+        },
+        {
+          "fp32_correct": 477,
+          "int8_correct": 476
+        },
+        {
+          "fp32_correct": 477,
+          "int8_correct": 476
+        }
+      ]
+    },
+    {
+      "class_index": 5,
+      "n": 473,
+      "sessions": [
+        {
+          "fp32_correct": 428,
+          "int8_correct": 425
+        },
+        {
+          "fp32_correct": 428,
+          "int8_correct": 425
+        },
+        {
+          "fp32_correct": 428,
+          "int8_correct": 425
+        }
+      ]
+    },
+    {
+      "class_index": 6,
+      "n": 502,
+      "sessions": [
+        {
+          "fp32_correct": 479,
+          "int8_correct": 479
+        },
+        {
+          "fp32_correct": 479,
+          "int8_correct": 479
+        },
+        {
+          "fp32_correct": 479,
+          "int8_correct": 479
+        }
+      ]
+    },
+    {
+      "class_index": 7,
+      "n": 469,
+      "sessions": [
+        {
+          "fp32_correct": 445,
+          "int8_correct": 446
+        },
+        {
+          "fp32_correct": 445,
+          "int8_correct": 446
+        },
+        {
+          "fp32_correct": 445,
+          "int8_correct": 446
+        }
+      ]
+    },
+    {
+      "class_index": 8,
+      "n": 518,
+      "sessions": [
+        {
+          "fp32_correct": 496,
+          "int8_correct": 496
+        },
+        {
+          "fp32_correct": 496,
+          "int8_correct": 496
+        },
+        {
+          "fp32_correct": 496,
+          "int8_correct": 496
+        }
+      ]
+    },
+    {
+      "class_index": 9,
+      "n": 483,
+      "sessions": [
+        {
+          "fp32_correct": 467,
+          "int8_correct": 465
+        },
+        {
+          "fp32_correct": 467,
+          "int8_correct": 465
+        },
+        {
+          "fp32_correct": 467,
+          "int8_correct": 465
+        }
+      ]
+    }
+  ]
+}
